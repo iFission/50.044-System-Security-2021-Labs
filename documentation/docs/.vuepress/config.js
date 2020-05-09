@@ -8,7 +8,7 @@ module.exports = {
   dest: '../public',
   title: '50.044 System Security',
   description: 'LABS',
-  base: '/istd50044/labs/',
+  base: '/labs/',
   head: [
     [
       'link',
