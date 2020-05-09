@@ -6,8 +6,10 @@ pages:
     - documentation/node_modules/
 
   script:
-  - cd documentation && npm install
-  - cd documentation && npm run build
+  - ls
+  - cd documentation
+  - npm install
+  - npm run build
   artifacts:
     paths:
     - public
