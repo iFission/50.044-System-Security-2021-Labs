@@ -12,11 +12,11 @@ killall -w zookld zookd zookfs zookd-nxstack zookfs-nxstack zookd-exstack zookfs
 ulimit -s unlimited
 
 DIR=$(pwd -P)
-if [ "$DIR" != /home/httpd/lab ]; then
+if [ "$DIR" != /home/httpd/labs/lab1_mem_vulnerabilities ]; then
     echo "========================================================"
     echo "WARNING: Lab directory is $DIR"
-    echo "Make sure your lab is checked out at /home/httpd/lab or"
-    echo "your solutions may not work when grading."
+    echo "Make sure your lab is checked out at "
+    echo "/home/httpd/labs/lab1_mem_vulnerabilities"
     echo "========================================================"
 fi
 # setarch -R disables ASLR

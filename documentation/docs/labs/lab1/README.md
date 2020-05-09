@@ -1,6 +1,6 @@
 # Lab 1 - Memory Vulnerabilities
 
-[![pdf](/pdf.svg)](/labs/labs/lab1.pdf)
+[![pdf](/labs/pdf.svg)](/labs/labs/lab1.pdf)
 
 Lab 1 will introduce you to buffer overflow vulnerabilities, in the context of a web server called `zookws`. The `zookws` web server runs a simple python web application, `zoobar`, with which users transfer "**zoobars**" (credits) between each other. You will find buffer overflows in the `zookws` web server code, write exploits for the buffer overflows to inject code into the server over the network, and figure out how to bypass non-executable stack protection. Later labs look at other security aspects of the `zoobar` and `zookws` infrastructure.
 

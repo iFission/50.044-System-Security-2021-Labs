@@ -1,5 +1,7 @@
 # Lab 3 - Web Security
 
+[![pdf](/labs/pdf.svg)](/labs/labs/lab3.pdf)
+
 This project is based on the element-ui default visual style. If you have additional requirements for visual style, you can follow the official custom theme [guide](http://element.eleme.io/#/en-US/component/custom-theme). The method is implemented by covering style variables.
 
 ## Style override

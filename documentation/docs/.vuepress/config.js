@@ -19,10 +19,8 @@ module.exports = {
     ]
   ],
   themeConfig: {
-    repo:
-      'https://github.com/PanJiaChen/vue-element-admin-site/tree/master/docs/guide',
-    docsRepo:
-      'https://github.com/PanJiaChen/vue-element-admin-site/tree/master/docs/guide',
+    repo: 'https://gitlab.com/istd50044/labs/',
+    docsRepo: 'https://gitlab.com/istd50044/labs/documentation',
     docsDir: 'docs',
     editLinks: false,
     sidebarDepth: 3,
@@ -47,7 +45,7 @@ module.exports = {
             items: genNav(deepClone(DownloadsNav), 'EN')
           },
           {
-            text: 'Ask a question (Slacker)',
+            text: 'Questions (Slacker)',
             link: 'https://app.slack.com/client/TNY7NL5V1/CP9N03HDE'
           }
         ],

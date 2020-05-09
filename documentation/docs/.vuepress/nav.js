@@ -13,6 +13,10 @@ var DownloadsNav = [
           'https://download.virtualbox.org/virtualbox/6.1.6/VirtualBox-6.1.6-137129-OSX.dmg'
       },
       {
+        text: 'Oracle VM Virtual Box (Linux)',
+        link: 'https://www.virtualbox.org/wiki/Linux_Downloads'
+      },
+      {
         text: 'MobaXterm (SSH Client for Windows)',
         link: 'https://mobaxterm.mobatek.net/download-home-edition.html'
       }
@@ -22,8 +26,9 @@ var DownloadsNav = [
     textEN: 'Virtual Machine',
     items: [
       {
-        text: 'Debian VM (Oracle Virtual Box)',
-        link: 'https://github.com/PanJiaChen/vue-element-admin'
+        text: 'ISTD50044.ova (Debian 9.7)',
+        link:
+          'https://drive.google.com/file/d/1iKXW7YgwMLvZITnJCX8oYDrKlgtouarQ/view?usp=sharing'
       }
     ]
   }
