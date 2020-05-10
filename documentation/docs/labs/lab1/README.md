@@ -8,7 +8,7 @@ The files you will need for this and subsequent labs are distributed using the [
 
 ![lab1_git](/labs/labs/lab1_git.gif)
 
-The course Git repository is available at **https://web.mit.edu/6858/2019/lab.git**. To get the lab code, log into the VM using the `httpd` account and clone the source code for lab 1 as follows:
+The course Git repository is available at [https://gitlab.com/istd50044/labs](https://gitlab.com/istd50044/labs). To get the lab code, log into the VM using the `httpd` account and clone the source code for lab 1 as follows:
 
 ```bash
 httpd@istd:~$ git clone https://gitlab.com/istd50044/labs

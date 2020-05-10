@@ -22,7 +22,7 @@ To get a sense what transfer does, start the `zoobar` Web site:
 
 ```bash
 httpd@istd:~/labs/lab2_priv_separation$ sudo make setup
-[sudo] password for httpd: 6858
+[sudo] password for httpd: httpd
 ./chroot-setup.sh
 + grep -qv uid=0
 + id
@@ -89,7 +89,7 @@ cc -m32  zookfs.o http.o  -lcrypto -o zookfs
 cc -m32 -g -std=c99 -Wall -Werror -D_GNU_SOURCE   -c -o zookd.o zookd.c
 cc -m32  zookd.o http.o  -lcrypto -o zookd
 httpd@istd:~/labs/lab2_priv_separation$ sudo make setup
-[sudo] password for httpd: 6858
+[sudo] password for httpd: httpd
 ./chroot-setup.sh
 + grep -qv uid=0
 + id

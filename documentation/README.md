@@ -1,6 +1,6 @@
 # Labs Documentation
 
-[View Documentation Online](https://panjiachen.github.io/vue-element-admin-site)
+[View Documentation Online](https://istd50044.gitlab.io/labs/)
 
 ## Build Documentation
 
