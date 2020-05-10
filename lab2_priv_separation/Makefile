@@ -18,12 +18,13 @@ check:
 .PHONY: setup
 setup:
 	./chroot-setup.sh
+	./fix-flask.sh > /dev/null || true
 
 
 
 .PHONY: fix-flask
 fix-flask: fix-flask.sh
-	./fix-flask.sh
+	./fix-flask.sh || true
 
 .PHONY: clean
 clean:

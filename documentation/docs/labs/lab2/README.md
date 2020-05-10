@@ -21,7 +21,7 @@ One of the key features of the `zoobar` application is the ability to transfer c
 To get a sense what transfer does, start the `zoobar` Web site:
 
 ```bash
-httpd@istd:~/labs/lab2_priv_separation$ sudo make setup
+httpd@istd:~/labs/lab2_priv_separation$ sudo make all setup
 [sudo] password for httpd: httpd
 ./chroot-setup.sh
 + grep -qv uid=0
@@ -35,21 +35,7 @@ zookld: Launching zookd
 ...
 ```
 
-Now, make sure you can run the web server, and access the web site from your browser, as follows:
-
-```bash
-httpd@istd:~/labs/lab2_priv_separation$ ip addr show dev eth0
-2: eth0:  mtu 1500 qdisc pfifo_fast state UP group default qlen 1000
-    link/ether 00:0c:29:b4:55:8e brd ff:ff:ff:ff:ff:ff
-    inet 192.168.24.128/24 brd 192.168.24.255 scope global eth0
-       valid_lft forever preferred_lft forever
-    inet6 fe80::20c:29ff:feb4:558e/64 scope link
-       valid_lft forever preferred_lft forever
-```
-
-In this particular example, you would want to open your browser and go to `http://192.168.24.128:8080/zoobar/index.cgi/`, or, if you are using KVM, to `http://localhost:8080/zoobar/index.cgi/`. You should see the `zoobar` web site.
-
-If you are having issues with seeing the web site, one possible cause is that the fixes that you made in Lab 1 to fix the buffer overflow bugs may be overly strict. If so, please fix it before continuing.
+Now, make sure you can run the web server, and access the web site from your browser. In this particular example, you would want to open your browser and go to `http://127.0.0.1:8080/zoobar/index.cgi/`. You should see the `zoobar` web site.
 
 :::tip
 

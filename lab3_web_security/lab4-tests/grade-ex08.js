@@ -36,7 +36,7 @@ function main(studentDir) {
             }
         };
 
-	var target = "http://css.csail.mit.edu/6.858/2019/";
+	var target = "https://istd50044.gitlab.io/labs/";
         console.log("Loading attacker page. If you get a timeout here you're not redirecting to " + target + ".");
         page.open(answerPath);
         page.onLoadFinished = function(status) {
