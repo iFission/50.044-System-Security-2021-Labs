@@ -1,8 +1,8 @@
 # Setup VM
 
-[![pdf](/labs/pdf.svg)](/labs/setup_vm/setup_vm.pdf)
-
 Exploiting buffer overflows requires precise control over the execution environment. A small change in the compiler, environment variables, or the way the program is executed can result in slightly different memory layout and code structure, thus requiring a different exploit. For this reason, this lab uses a [virtual machine](https://en.wikipedia.org/wiki/Virtual_machine) to run the vulnerable web server code.
+
+![home](/labs/setup_vm/home.png)
 
 ## 1) Download VM software
 
@@ -14,17 +14,23 @@ Once you have virtual machine software installed on your machine, you should dow
 
 ## 3) Import & Configure VM Image
 
-To import the course VM, open Oracle VM Virtual Box and import `ISTD50044.ova`. Go to `File > Import Appliance` , select "create a custom virtual machine", choose Linux > Debian 9.x 64-bit, choose Legacy BIOS, and use an existing virtual disk (and select the `ISTD50044.vdi` file, choosing the "Take this disk away" option). Finally, click Finish to complete the setup.
+To import the course VM, open Oracle VM Virtual Box and import `ISTD50044.ova`. Go to `File > Import Appliance`, select the file `ISTD50044.ova` and proceed the import process with the default settings. After some minutes the import process should finish and Oracle VM Virtual Box should will list the VM.
+
+By default the VM image is imported with the correct NAT network settings, however you can verify if such configuration is correct. Go to `Settings > Network > Advanced` and open the `Port Forwarding window`. The Ports forwarding should be configured as the Figure below:
+
+![nat_settings](/labs/setup_vm/nat_settings.png)
 
 ## 4) Start VM
 
-To start the VM with kvm, run **./6.858-x86_64-v19.sh** from a terminal (`Ctrl+A x` to force quit). If you get a permission denied error from this script, try adding yourself to the `kvm` group with `sudo gpasswd -a`whoami`kvm`, then log out and log back in.
+To start the VM, simply select the **ISTD50044** entry and click on the Start button (Green right arrow on toolbar). If you get a firewall prompt, you can accept to allow the VM to open **ports 22000, 8080 and 3000** so you can connect and browse the labs apps.
+
+![import_vm](/labs/setup_vm/import_vm.gif)
 
 :::tip
 
 #### VM Credentials
 
-**You'll use two accounts on the VM:**
+You'll use two accounts on the VM, the user account (**httpd**) and root. By default, the VM automatically logins **httpd** user.
 
 | Username | Password | Description                                                                                                                                                                      |
 | :------- | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -33,21 +39,20 @@ To start the VM with kvm, run **./6.858-x86_64-v19.sh** from a terminal (`Ctrl+A
 
 :::
 
-## 5) Connect to the VM via SSH
+## 5) Connect to the VM
 
-You can either log into the virtual machine using its console, or use ssh to log into the virtual machine over the (virtual) network. The latter also lets you easily copy files into and out of the virtual machine with `scp` or `rsync`. How you access the virtual machine over the network depends on how you're running it. If you're using VMWare, you'll first have to find the virtual machine's IP address. To do so, log in as root on the console, run **ip addr show dev eth0**, and note the IP address listed beside `inet`. With kvm, you can use `localhost` as the IP address for ssh and HTTP. You can now log in with ssh by running the following command from your host machine: **ssh -p 2222 httpd@IPADDRESS**. To avoid having to type the password each time, you may want to set up an [SSH Key](https://www.booleanworld.com/set-ssh-keys-linux-unix-server/).
+#### SSH Client
 
-## 6) Download Labs repository
+You can either log into the virtual machine using its console, or use SSH to log into the virtual machine over the (virtual) network. You can use any SSH client to access the VM, but we recommend using [MobaXterm](https://mobaxterm.mobatek.net/download-home-edition.html) as it provides easy access to VM's files via SFTP protocol. As the VM forwards it SSH port (22) to the host port 22000 by default, the SSH access is done via the localhost (httpd@127.0.0.1:22000). The configuration using MobaXterm SSH client is shown below.
 
-The files you will need for this and subsequent labs are distributed using the [Git](http://git-scm.com/)[overview of Git](https://hacker-tools.github.io/version-control/)[Git user's manual](http://www.kernel.org/pub/software/scm/git/docs/user-manual.html). The course Git repository is available at **https://web.mit.edu/6858/2019/lab.git**. To get the lab code, log into the VM using the `httpd` account and clone the source code for lab 1 as follows:
+![mobaxterm](/labs/setup_vm/mobaxterm.png)
 
-```
-httpd@6858-v19:~$ git clone https://web.mit.edu/6858/2019/lab.git
-Cloning into 'lab'...
-httpd@6858-v19:~$ cd lab
-httpd@6858-v19:~/lab$
-```
+#### VSCode IDE
+
+After the VM is running, you can also access the online VSCode IDE which allows easy code browsing of the labs files.
+
+![vscode](/labs/setup_vm/vscode.png)
 
 ## Labs
 
-Now that you have your environment ready, follow the `Labs Guide link` on the toolbar to proceed with the lab.
+Now that you have your environment ready, follow the link to [Lab 1](/labs/lab1/).

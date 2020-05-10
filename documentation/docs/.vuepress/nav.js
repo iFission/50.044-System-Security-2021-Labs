@@ -28,7 +28,7 @@ var DownloadsNav = [
       {
         text: 'ISTD50044.ova (Debian 9.7)',
         link:
-          'https://drive.google.com/file/d/1iKXW7YgwMLvZITnJCX8oYDrKlgtouarQ/view?usp=sharing'
+          'https://drive.google.com/open?id=1iKXW7YgwMLvZITnJCX8oYDrKlgtouarQ'
       }
     ]
   }

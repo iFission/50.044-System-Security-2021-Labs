@@ -1,110 +1,52 @@
 # Lab 3 - Web Security
 
-[![pdf](/labs/pdf.svg)](/labs/labs/lab3.pdf)
+## A) Introduction
 
-This project is based on the element-ui default visual style. If you have additional requirements for visual style, you can follow the official custom theme [guide](http://element.eleme.io/#/en-US/component/custom-theme). The method is implemented by covering style variables.
+This lab will introduce you to browser-based attacks, as well as to how one might go about preventing them. The lab has several parts:
 
-## Style override
+- Part 1: cross-site scripting attack
+- Part 2: cross-site request forgery
+- Part 3: side channel and phishing attack
+- Part 4: a profile worm
 
-The generic style variables for element-ui may not satisfy all custom requirements, and you can do this by overriding the default component style.Since the element-ui style is introduced globally, you can't add scoped if you want to override its style in a `view`, but if you want to override only the element style of the page, you can use it. Add a class to the parent to use the namespace to solve the problem.
+Each part has several exercises that help you build up an attack. All attacks will involve exploiting weaknesses in the zoobar site, but these are representative of weaknesses found in real web sites.
 
-Or use [Deep Selectors](https://vue-loader.vuejs.org/guide/scoped-css.html#deep-selectors)。
+### Network setup
 
-```css
-/* Your namespace */
-.article-page {
-  /* element-ui tag */
-  .el-tag {
-    margin-right: 0px;
-  }
-}
-```
+For this lab, you will be crafting attacks in your web browser that exploit vulnerabilities in the zoobar web application. To ensure that your exploits work on our machines when we grade your lab, we need to agree on the URL that refers to the zoobar web site. For the purposes of this lab, your zoobar web site must be acessible on `http://localhost:8080/`. If you have been using the default VM's, this configuration should work out of the box.
 
-Some global element-ui style modifications can be set in [@/src/styles/element-ui.scss](https://github.com/PanJiaChen/vue-element-admin/blob/master/src/styles/element-ui.scss).
+### Setting up the web server
 
-<br/>
-
-## Dynamic theme
-
-This project provides two kinds of dynamic skinning functions, each has its own advantages and disadvantages. Please choose according to your own needs.
-
-### Element-ui official method
-
-After the element-ui is upgraded to 2.0, the dynamic peel function is provided in the upper right corner of the official document. This project also provides a change function.
-
-Code: [@/src/components/ThemePicker](https://github.com/PanJiaChen/vue-element-admin/blob/master/src/components/ThemePicker/index.vue)。
-
-**Briefly explain its principle:** All styles after element-ui version 2.0 are based on SCSS, all colors are set based on a few basic color [variables](https://github.com/PanJiaChen/custom-element-theme/blob/master/element-variables.scss), so it is not difficult to achieve dynamic skinning, as long as find a few color variables to modify it. First, we need to get the version number of element-ui through `package.json` and request the corresponding style according to the version number. After you get the style, you will change the color, replace it with the color variable you want, and then dynamically add the `style` tag to override the original CSS style.
-
-::: tip
-It is necessary to obtain the version of element-ui to lock the version so as to avoid the impact of non-compatible updates when the Element is upgraded in the future.
-:::
-
-```js
-const version = require('element-ui/package.json').version
-
-const url = `https://unpkg.com/element-ui@${version}/lib/theme-chalk/index.css`
-this.getCSSString(url, chalkHandler, 'chalk')
-
-getCSSString(url, callback, variable) {
-  const xhr = new XMLHttpRequest()
-  xhr.onreadystatechange = () => {
-    if (xhr.readyState === 4 && xhr.status === 200) {
-      this[variable] = xhr.responseText.replace(/@font-face{[^}]+}/, '')
-      callback()
-    }
-  }
-  xhr.open('GET', url)
-  xhr.send()
-}
-```
-
-**How to use**
-
-Import the ThemePicker component to your project
-
-```js
-import ThemePicker from '@/components/ThemePicker'
-```
-
-- Advantage
-  - No need to prepare multiple sets of themes, free dynamic theme
-- Shortcomings
-  - Not enough customization, only support switching of basic colors
-
-<br/>
-<br/>
-
-### Multiple sets of theme
-
-This method is the most common way of theme, storing multiple sets of themes locally, both with different namespaces, such as writing two sets of themes, a set called `day-theme`, a set called `night-theme`, and `night-theme.` Themes are all under a `.night-theme` namespace, and we dynamically add `.night-theme` on body; remove `.night-theme`.
-
-#### How to use
-
-> We have made corresponding changes here based on the official theme generation library [element-theme](https://github.com/ElementUI/element-theme).
-
-First download [custom-element-theme](https://github.com/PanJiaChen/custom-element-theme)
+Before you begin working on these exercises, please use Git to commit your Lab 3 solutions, fetch the latest version of the course repository, and then create a local branch called `lab4` based on our lab4 branch, `origin/lab4`. Do _not_ merge your lab 2 and 3 solutions into lab 4. Here are the shell commands:
 
 ```bash
-git@github.com:PanJiaChen/custom-element-theme.git
+httpd@istd:~$ cd labs/lab3_web_security
+httpd@istd:~/labs/lab3_web_security$ git commit -am 'my solution to lab3'
+[lab3 c54dd4d] my solution to lab3
+ 1 files changed, 1 insertions(+), 0 deletions(-)
+httpd@istd:~/labs/lab3_web_security$ git pull
+Already up-to-date.
+httpd@istd:~/labs/lab3_web_security$ git checkout -b lab4 origin/lab4
+Branch lab4 set up to track remote branch lab4 from origin.
+Switched to a new branch 'lab4'
+httpd@istd:~/labs/lab3_web_security$ make
+...
 ```
 
-Globally installed theme generation tool
+Note that lab 4's source code is based on the initial web server from lab 1. It does not include privilege separation or Python profiles.
+
+Now you can start the `zookws` web server, as follows.
 
 ```bash
-npm i element-theme -g
+httpd@istd:~/labs/lab3_web_security$ ./zookld
 ```
 
-Enter the project directory Install dependencies
+Open your browser and go to the URL `http://localhost:8080/`. You should see the `zoobar` web application. If you don't, go back and double-check your steps. If you cannot get the web server to work, get in touch with course staff before proceeding further.
 
-```bash
-npm install
-```
+### Crafting attacks
 
-First execute `et -i` to generate `element-variables.scss` file that stores style variables, then enter `element-variables.scss` file to modify your own variables, execute `et` after modification, compile subject, and finally Execute `gulp` to generate a namespace. All generated files are in the `dist` directory. You just copy all the contents of the file to `src/assets/custom-theme` in the `vue-element-admin` project.
+You will craft a series of attacks against the `zoobar` web site you have been working on in previous labs. These attacks exploit vulnerabilities in the web application's design and implementation. Each attack presents a distinct scenario with unique goals and constraints, although in some cases you may be able to re-use parts of your code.
 
-::: tip
-If you need to modify the name of the package generation style namespace, just modify the [variable](https://github.com/PanJiaChen/custom-element-theme/blob/master/gulpfile.js#L6).
-:::
+We will run your attacks after wiping clean the database of registered users (except the user named "attacker"), so do not assume the presence of any other users in your submitted attacks.
 
-![](https://panjiachen.gitee.io/gitee-cdn/vue-element-admin-site/0726b472-90f4-4fe9-a665-26fb8f9795c3.gif)
+You can run our tests with `make check`; this will execute your attacks against the server, and tell you whether your exploits are working correctly. As in previous labs, keep in mind that the checks performed by `make check` are not exhaustive, especially with respect to race conditions. You may wish to run the tests multiple times to convince yourself that your exploits are robust.

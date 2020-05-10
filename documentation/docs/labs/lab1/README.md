@@ -1,20 +1,20 @@
 # Lab 1 - Memory Vulnerabilities
 
-[![pdf](/labs/pdf.svg)](/labs/labs/lab1.pdf)
-
 Lab 1 will introduce you to buffer overflow vulnerabilities, in the context of a web server called `zookws`. The `zookws` web server runs a simple python web application, `zoobar`, with which users transfer "**zoobars**" (credits) between each other. You will find buffer overflows in the `zookws` web server code, write exploits for the buffer overflows to inject code into the server over the network, and figure out how to bypass non-executable stack protection. Later labs look at other security aspects of the `zoobar` and `zookws` infrastructure.
 
 ## Getting started
 
 The files you will need for this and subsequent labs are distributed using the [Git](http://git-scm.com/)[overview of Git](https://hacker-tools.github.io/version-control/)[Git user's manual](http://www.kernel.org/pub/software/scm/git/docs/user-manual.html)
 
+![lab1_git](/labs/labs/lab1_git.gif)
+
 The course Git repository is available at **https://web.mit.edu/6858/2019/lab.git**. To get the lab code, log into the VM using the `httpd` account and clone the source code for lab 1 as follows:
 
 ```bash
-httpd@istd:~$ git clone https://web.mit.edu/6858/2019/lab.git
-Cloning into 'lab'...
-httpd@istd:~$ cd lab
-httpd@istd:~/lab$
+httpd@istd:~$ git clone https://gitlab.com/istd50044/labs
+Cloning into 'labs'...
+httpd@istd:~$ cd labs/lab1_mem_vulnerabilities
+httpd@istd:~/labs/lab1_mem_vulnerabilities$
 ```
 
 Before you proceed with this lab assignment, make sure you can compile the `zookws` web server:
@@ -46,39 +46,61 @@ There are two versions of `zookd` you will be using:
 
 `zookd-exstack` has an executable stack, which makes it easy to inject executable code given a stack buffer overflow vulnerability. has a non-executable stack, and requires a more sophisticated attack to exploit stack buffer overflows.
 
-The reference binaries of `zookd` are provided in `bin.tar.gz`, which we will use for grading. Make sure your exploits work on those binaries. The **make check** command will always use both `clean-env.sh` and `bin.tar.gz` to check your submission.
-
 Now, make sure you can run the `zookws` web server and access the `zoobar` web application from a browser running on your machine, as follows:
 
-```shell
-httpd@istd:~/lab$ ./clean-env.sh ./zookd 8080
+```bash
+httpd@istd:~/labs/lab1_mem_vulnerabilities$ ./clean-env.sh ./zookd 8080
 ```
 
-The `./clean-env.sh` commands starts `zookd` on port 8080. To open the zoobar application, open your browser and point it at the URL `http://IPADDRESS:8080/`, where `IPADDRESS` is the VM's IP address we found [above](https://css.csail.mit.edu/6.858/2019/labs/lab1.html#ssh). If something doesn't seem to be working, try to figure out what went wrong, or contact the course staff, before proceeding further.
+The commands above start `zookd` on port 8080. To open the zoobar application, open your browser and point it at the URL `http://127.0.0.1:8080/`, where `127.0.0.1` is the your local machine IP which has port 8080 mapped to the same VM port. If something doesn't seem to be working, check if the NAT Network is setup correctly on the VM before proceeding further.
+
+The reference binaries of `zookd` are provided in `bin.tar.gz`, which we will use for grading. Make sure your exploits work on those binaries. The **make check** command will use both `clean-env.sh` and `bin.tar.gz` to check your submission.
 
 ## A) Finding buffer overflows
 
 In the first part of this lab assignment, you will find buffer overflows in the provided web server. To do this lab, you will need to understand the basics of buffer overflows. To help you get started with this, you should read [Smashing the Stack in the 21st Century](https://thesquareplanet.com/blog/smashing-the-stack-21st-century/), which goes through the details of how buffer overflows work, and how they can be exploited.
 
-Now, you will start developing exploits to take advantage of the buffer overflows you have found above. We have provided template Python code for an exploit in `/home/httpd/lab/exploit-template.py`, which issues an HTTP request. The exploit template takes two arguments, the server name and port number, so you might run it as follows to issue a request to `zookws` running on localhost:
+:::tip
 
-```shell
-httpd@istd:~/lab$ ./clean-env.sh ./zookd-exstack 8080 &
+### **Exercise 1**
+
+Study the web server's C code (in `zookd.c` and `http.c`), and find one example of code that allows an attacker to overwrite the return address of a function. **Hint: look for buffers allocated on the stack**. Write down a description of the vulnerability in the file `answers.txt`. For your vulnerability, describe the buffer which may overflow, how you would structure the input to the web server (i.e., the HTTP request) to overflow the buffer and overwrite the return address, and the call stack that will trigger the buffer overflow (i.e., the chain of function calls starting from `process_client`).
+
+It is worth taking your time on this exercise and familiarizing yourself with the code, because your next job is to exploit the vulnerability you identified. In fact, you may want to go back and forth between this exercise and [Exercises 2](#exercise-2) and [3.2](#exercise-3-2), as you work out the details and document them. That is, if you find a buffer overflow that you think can be exploited, you can use Exercises 2 and 3 to figure out if it indeed can be exploited. It will be helpful to draw a stack diagram like the figures in [Smashing the Stack in the 21st Century](https://thesquareplanet.com/blog/smashing-the-stack-21st-century/).
+
+:::
+
+Now, you will start developing exploits to take advantage of the buffer overflows you have found above. We have provided template Python code for an exploit in `~/labs/lab1_mem_vulnerabilities/exploit-template.py`, which issues an HTTP request. The exploit template takes two arguments, the server name and port number, so you might run it as follows to issue a request to `zookws` running on localhost:
+
+```bash
+httpd@istd:~/labs/lab1_mem_vulnerabilities$ ./clean-env.sh ./zookd-exstack 8080 &
 [1] 2676
-httpd@istd:~/lab$ ./exploit-template.py localhost 8080
+httpd@istd:~/labs/lab1_mem_vulnerabilities$ ./exploit-template.py localhost 8080
 HTTP request:
 GET / HTTP/1.0
 
 ...
-httpd@istd:~/lab$
+httpd@istd:~/labs/lab1_mem_vulnerabilities$
 ```
 
 You are free to use this template, or write your own exploit code from scratch. Note, however, that if you choose to write your own exploit, the exploit must run correctly inside the provided virtual machine.
 
+:::tip
+
+### Exercise 2
+
+Write an exploit that uses a buffer overflow to crash the web server (or one of the processes it creates). You do not need to inject code at this point. Verify that your exploit crashes the server by checking the last few lines of `dmesg | tail`, using `gdb`, or observing that the web server crashes (i.e., it will print `Child process 9999 terminated incorrectly, receiving signal 11`)
+
+Provide the code for the exploit in a file called `exploit-2.py`.
+
+The vulnerability you found in [Exercise 1](#exercise-1) may be too hard to exploit. Feel free to find and exploit a different vulnerability.
+
+:::
+
 You may find `gdb` useful in building your exploits (though it is not required for you to do so). As `zookd` forks off many processes (one for each client), it can be difficult to debug the correct one. The easiest way to do this is to run the web server ahead of time with `clean-env.sh` and then attaching `gdb` to an already-running process with the `-p` flag. You can find the PID of a process by using `pgrep`; for example, to attach to `zookd-exstack`, start the server and, in another shell, run
 
-```shell
-httpd@istd:~/lab$ gdb -p $(pgrep zookd-)
+```bash
+httpd@istd:~/labs/lab1_mem_vulnerabilities$ gdb -p $(pgrep zookd-)
 ...
 (gdb) break your-breakpoint
 Breakpoint 1 at 0x1234567: file zookd.c, line 999.
@@ -86,56 +108,63 @@ Breakpoint 1 at 0x1234567: file zookd.c, line 999.
 Continuing.
 ```
 
-Keep in mind that a process being debugged by `gdb` will not get killed even if you terminate the parent `zookd` process using `^C`. If you are having trouble restarting the web server, check for leftover processes from the previous run, or be sure to exit `gdb` before restarting `zookd`. You can also save yourself some typing by using `b` instead of `break`, and `c` instead of `continue`.
+Keep in mind that a process being debugged by `gdb` will not get killed even if you terminate the parent `zookd` process using `Control + C (^C)`. If you are having trouble restarting the web server, check for leftover processes from the previous run, or be sure to exit `gdb` before restarting `zookd`. You can also save yourself some typing by using `b` instead of `break`, and `c` instead of `continue`.
 
-When a process being debugged by `gdb` forks, by default `gdb` continues to debug the parent process and does not attach to the child. Since `zookd` forks a child process to service each request, you may find it helpful to have `gdb` attach to the child on fork, using the command `set follow-fork-mode child`. We have added that command to `/home/httpd/lab/.gdbinit`, which will take effect if you start `gdb` in that directory.
+When a process being debugged by `gdb` forks, by default `gdb` continues to debug the parent process and does not attach to the child. Since `zookd` forks a child process to service each request, you may find it helpful to have `gdb` attach to the child on fork, using the command `set follow-fork-mode child`. We have added that command to `~/labs/lab1_mem_vulnerabilities/.gdbinit`, which will take effect if you start `gdb` in that directory.
 
 For this and subsequent exercises, you may need to encode your attack payload in different ways, depending on which vulnerability you are exploiting. In some cases, you may need to make sure that your attack payload is URL-encoded; that is, use `+` instead of space and `%2b` instead of `+`. Here is a [URL encoding reference](http://www.blooberry.com/indexdot/html/topics/urlencoding.htm) and a handy [conversion tool](https://www.url-encode-decode.com/). You can also use quoting functions in the python `urllib` module to URL encode strings. In other cases, you may need to include binary values into your payload. The Python [struct](http://docs.python.org/2/library/struct.html) module can help you do that. For example, `struct.pack("<Q", x)` will produce an 8-byte (64-bit) binary encoding of the integer `x`.
 
 You can check whether your exploits crash the server as follows:
 
-```shell
-httpd@istd:~/lab$ make check-crash
+```bash
+httpd@istd:~/labs/lab1_mem_vulnerabilities$ make check-crash
 ```
 
 ## B) Code injection
 
 In this part, you will use your buffer overflow exploits to inject code into the web server. The goal of the injected code will be to unlink (remove) a sensitive file on the server, namely `/home/httpd/grades.txt`. Use `zookd-exstack`, since it has an executable stack that makes it easier to inject code. The `zookws` web server should be started as follows.
 
-```shell
-httpd@istd:~/lab$ ./clean-env.sh ./zookd-exstack 8080
+```bash
+httpd@istd:~/labs/lab1_mem_vulnerabilities$ ./clean-env.sh ./zookd-exstack 8080
 ```
 
-You can build the exploit in two steps. First, write the shell code that unlinks the sensitive file, namely `/home/httpd/grades.txt`. Second, embed the compiled shell code in an HTTP request that triggers the buffer overflow in the web server.
+You can build the exploit in two steps. First, write the shell code that unlinks the sensitive file, namely `~/labs/lab1_mem_vulnerabilities/grades.txt`. Second, embed the compiled shell code in an HTTP request that triggers the buffer overflow in the web server.
 
 When writing shell code, it is often easier to use assembly language rather than higher-level languages, such as C. This is because the exploit usually needs fine control over the stack layout, register values and code size. The C compiler will generate additional function preludes and perform various optimizations, which makes the compiled binary code unpredictable.
 
-We have provided shell code for you to use in `/home/httpd/lab/shellcode.S`, along with `Makefile` rules that produce `/home/httpd/lab/shellcode.bin`, a compiled version of the shell code, when you run **make**. The provided shell code is intended to exploit setuid-root binaries, and thus it runs a shell. You will need to modify this shell code to instead unlink `/home/httpd/grades.txt`.
+We have provided shell code for you to use in `~/labs/lab1_mem_vulnerabilities/shellcode.S`, along with `Makefile` rules that produce `~/labs/lab1_mem_vulnerabilities/shellcode.bin`, a compiled version of the shell code, when you run **make**. The provided shell code is intended to exploit setuid-root binaries, and thus it runs a shell. You will need to modify this shell code to instead unlink `/home/httpd/grades.txt`.
+
+:::tip
+
+### Exercise 3.1
+
+Modify `shellcode.S` to unlink `/home/httpd/grades.txt`. Your assembly code can either invoke the `SYS_unlink` system call, or call the `unlink()` library function.
+
+:::
 
 To help you develop your shell code for this exercise, we have provided a program called `run-shellcode` that will run your binary shell code, as if you correctly jumped to its starting point. For example, running it on the provided shell code will cause the program to `execve("/bin/sh")`, thereby giving you another shell prompt:
 
-```shell
-httpd@istd:~/lab$ ./run-shellcode shellcode.bin
+```bash
+httpd@istd:~/labs/lab1_mem_vulnerabilities$ ./run-shellcode shellcode.bin
 ```
 
 To test whether the shell code does its job, run the following commands:
 
-```
-httpd@istd:~/lab$ make
-httpd@istd:~/lab$ touch ~/grades.txt
-httpd@istd:~/lab$ ./run-shellcode shellcode.bin
-# Make sure /home/httpd/grades.txt is gone
-httpd@istd:~/lab$ ls ~/grades.txt
+```bash
+httpd@istd:~/labs/lab1_mem_vulnerabilities$ make
+httpd@istd:~/labs/lab1_mem_vulnerabilities$ touch ~/grades.txt
+httpd@istd:~/labs/lab1_mem_vulnerabilities$ ./run-shellcode shellcode.bin
+httpd@istd:~/labs/lab1_mem_vulnerabilities$ ls ~/grades.txt
 ls: cannot access /home/httpd/grades.txt: No such file or directory
 ```
 
 You may find [strace](https://linux.die.net/man/1/strace) useful when trying to figure out what system calls your shellcode is making. Much like with `gdb`, you attach `strace` to a running program:
 
-```
-httpd@istd:~/lab$ strace -f -p $(pgrep zookd-)
+```bash
+httpd@istd:~/labs/lab1_mem_vulnerabilities$ strace -f -p $(pgrep zookd-)
 ```
 
-It will then print all of the system calls that program makes. If your shell code isn't working, try looking for the system call you think your shell code should be executing (i.e., `unlink`
+It will then print all of the system calls that program makes. If your shell code isn't working, try looking for the system call you think your shell code should be executing (i.e., `unlink`).
 
 Next, we construct a malicious HTTP request that injects the compiled byte code to the web server, and hijack the server's control flow to run the injected code. When developing an exploit, you will have to think about what values are on the stack, so that you can modify them accordingly.
 
@@ -143,8 +172,8 @@ When you're constructing an exploit, you will often need to know the addresses o
 
 A more fool-proof approach to determine addresses is to use `gdb`. For example, suppose you want to know the stack address of the `pn[]` array in the `http_serve` function in `zookd-exstack`, and the address of its saved return pointer. You can obtain them using `gdb` by first starting the web server (remember `clean-evn`!), and then attaching `gdb` to it:
 
-```
-httpd@istd:~/lab$ gdb -p $(pgrep zookd-)
+```bash
+httpd@istd:~/labs/lab1_mem_vulnerabilities$ gdb -p $(pgrep zookd-)
 ...
 (gdb) break http_serve
 Breakpoint 1 at 0x5555555561d2: file http.c, line 275.
@@ -152,15 +181,15 @@ Breakpoint 1 at 0x5555555561d2: file http.c, line 275.
 Continuing.
 ```
 
-Be sure to run `gdb` from the `~/lab` directory, so that it picks up the `set follow-fork-mode child` command from `~/lab/.gdbinit`. Now you can issue an HTTP request to the web server, so that it triggers the breakpoint, and so that you can examine the stack of `http_serve`.
+Be sure to run `gdb` from the `~/labs/lab1_mem_vulnerabilities` directory, so that it picks up the `set follow-fork-mode child` command from `~/labs/lab1_mem_vulnerabilities/.gdbinit`. Now you can issue an HTTP request to the web server, so that it triggers the breakpoint, and so that you can examine the stack of `http_serve`.
 
-```
-httpd@istd:~/lab$ curl localhost:8080
+```bash
+httpd@istd:~/labs/lab1_mem_vulnerabilities$ curl localhost:8080
 ```
 
-This will cause ` gdb``gdb `
+This will cause `gdb` to hit the breakpoint you set and halt execution, and give you an opportunity to ask `gdb` for addresses you are interested in:
 
-```
+```bash
 Thread 2.1 "zookd-exstack" hit Breakpoint 1, http_serve (fd=4, name=0x55555575f80c "/") at http.c:275
 275         void (*handler)(int, const char *) = http_serve_none;
 (gdb) print &pn
@@ -181,21 +210,21 @@ From this, you can tell that, at least for this invocation of `http_serve`, the 
 
 :::tip
 
-### Exercise 3.2 - Develop an exploit
+### Exercise 3.2
 
 Now it's your turn to develop an exploit.
 
 You can check whether your exploit works as follows:
 
 ```bash
-httpd@istd:~/lab$ make check-exstack
+httpd@istd:~/labs/lab1_mem_vulnerabilities$ make check-exstack
 ```
 
-The test either prints "PASS" or "FAIL". We will grade your exploits in this way. Do not change the `Makefile`.
+The test either prints "PASS" or "FAIL".
 
 The standard C compiler used on Linux, gcc, implements a version of stack canaries (called SSP). You can explore whether GCC's version of stack canaries would or would not prevent a given vulnerability by using the SSP-enabled versions of `zookd`: `zookd-withssp`.
 
-Submit your answers to the first two parts of this lab assignment by running **make submit-a**. Alternatively, run **make prepare-submit-a** and upload the resulting `lab1a-handin.tar.gz` file to [the submission web site](https://css.csail.mit.edu/6.858/2019/labs/handin.html).
+Submit your answers to the first two parts of this lab assignment by running **make prepare-submit-a** and upload the resulting `lab1a-handin.tar.gz` file to [edimension website](https://edimension.sutd.edu.sg).
 
 :::
 
@@ -204,7 +233,7 @@ Submit your answers to the first two parts of this lab assignment by running **m
 Many modern operating systems mark the stack non-executable in an attempt to make it more difficult to exploit buffer overflows. In this part, you will explore how this protection mechanism can be circumvented. Run the web server configured with binaries that have a non-executable stack, as follows.
 
 ```bash
-httpd@istd:~/lab$ ./clean-env.sh ./zookd-nxstack 8080
+httpd@istd:~/labs/lab1_mem_vulnerabilities$ ./clean-env.sh ./zookd-nxstack 8080
 ```
 
 The key observation to exploiting buffer overflows with a non-executable stack is that you still control the program counter, after a `ret` instruction jumps to an address that you placed on the stack. Even though you cannot jump to the address of the overflowed buffer (it will not be executable), there's usually enough code in the vulnerable server's address space to perform the operation you want.
@@ -215,21 +244,49 @@ One challenge with return-to-libc attacks is that you need to pass arguments to 
 
 The solution to this problem is to find a piece of code in the server that loads an address into `%rdi`. Such a piece of code is referred to as a "borrowed code chunk", or more generally as a [_rop gadget_](https://en.wikipedia.org/wiki/Return-oriented_programming), because it is a tool for return-oriented programming (rop). Luckily, `zookd.c` accidentally has a useful gadget: see the function `accidentally`.
 
+:::tip
+
+### Exercise 4
+
+Starting from your exploit in [Exercise 2](#exercise-2) and [3.2](#exercise-3-2), construct an exploit that unlinks `/home/httpd/grades.txt` when run on the binaries that have a non-executable stack. Name this new exploit `exploit-4.py`.
+
+In this attack you are going to take control of the server over the network _without injecting any code_ into the server. You should use a return-to-libc attack where you redirect control flow to code that already existed before your attack. The outline of the attack is to perform a buffer overflow that:
+
+1. causes the argument to the chosen libc function to be on stack
+2. then causes `accidentally` to run so that argument ends up in `%rdi`
+3. and then causes `accidentally` to return to the chosen libc function
+
+It will be helpful to draw a stack diagram like the figures in [Smashing the Stack in the 21st Century](https://thesquareplanet.com/blog/smashing-the-stack-21st-century/) at (1) the point that the buffer overflows and (2) at the point that `accidentally` runs.
+
 You can test your exploits as follows:
 
-```shell
-httpd@istd:~/lab$ make check-libc
+```bash
+httpd@istd:~/labs/lab1_mem_vulnerabilities$ make check-libc
 ```
+
+:::
 
 ## D) Fixing buffer overflows and other bugs
 
 Now that you have figured out how to exploit buffer overflows, you will try to find other kinds of vulnerabilities in the same code. As with many real-world applications, the "security" of our web server is not well-defined. Thus, you will need to use your imagination to think of a plausible threat model and policy for the web server.
 
+:::tip
+
+### Exercise 5
+
+Look through the source code and try to find more vulnerabilities that can allow an attacker to compromise the security of the web server. Describe the attacks you have found in `answers.txt`, along with an explanation of the limitations of the attack, what an attacker can accomplish, why it works, and how you might go about fixing or preventing it. You should ignore bugs in `zoobar`'s code. They will be addressed in future labs.
+
+One approach for finding vulnerabilities is to trace the flow of inputs controlled by the attacker through the server code. At each point that the attacker's input is used, consider all the possible values the attacker might have provided at that point, and what the attacker can achieve in that manner.
+
+You should find at least two vulnerabilities for this exercise.
+
+:::
+
 Finally, you will fix the vulnerabilities that you have exploited in this lab assignment.
 
 :::tip
 
-### Exercise 6 - Fixing vulnerabilities
+### Exercise 6
 
 For each buffer overflow vulnerability you have exploited in Exercises 2, 3, and 4, fix the web server's code to prevent the vulnerability in the first place. Do not rely on compile-time or runtime mechanisms such as [stack canaries](https://en.wikipedia.org/wiki/Stack_buffer_overflow#Stack_canaries), removing `-fno-stack-protector`, baggy bounds checking, etc.
 
@@ -240,3 +297,5 @@ Note that your submission should _not_ make changes to the `Makefile` and other 
 You should also make sure your code still passes all tests using **make check**, which uses the unmodified lab binaries.
 
 :::
+
+You are done! Submit your answers to the lab assignment by running **make prepare-submit** and upload the resulting `lab1-handin.tar.gz` file to [edimension website](https://edimension.sutd.edu.sg).

@@ -8,7 +8,7 @@ if [ $# -eq 0 ]; then
 fi
 
 killall -w zookld zookd zookfs zookd-nxstack zookfs-nxstack zookd-exstack zookfs-exstack &> /dev/null
-
+cp gdb_home $HOME/.gdbinit
 ulimit -s unlimited
 
 DIR=$(pwd -P)

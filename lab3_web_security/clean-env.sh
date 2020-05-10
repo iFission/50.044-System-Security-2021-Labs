@@ -1,5 +1,7 @@
 #!/bin/bash
 
+cp gdb_home $HOME/.gdbinit
+
 if [ $# -eq 0 ]; then
 	echo "Usage: $0 BIN PORT"
 	echo "clean-env runs the given server binary BIN using the configuration CONFIG in"
