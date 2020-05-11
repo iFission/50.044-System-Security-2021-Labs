@@ -1,9 +1,12 @@
-image: node:10.16.0
+#image: node:10.16.0
 
 pages:
   cache:
     paths:
     - documentation/node_modules/
+
+  tags:
+  - ubuntu
 
   script:
   - ls

@@ -1,5 +1,22 @@
 # Lab 1 - Memory Vulnerabilities
 
+:::tip
+
+## Homework Submission
+
+For this assignment, you should complete 6 exercises and submit their respective files on [edimension](https://edimension.sutd.edu.sg/webapps/login/). This includes your **assignment answers in .doc, .docx or .pdf format**, which briefly explains your solution to **all question**. **You can zip all files before submission.**
+
+The deliverables for the exercises are summarized below with the command to generate them. Keep in mind that those commands only compress the files of your lab folder. Make sure that your changes are included in the compressed files according to their respective exercises.
+
+| Exercise                                                     | Deliverable                                       | Command                   |
+| ------------------------------------------------------------ | ------------------------------------------------- | ------------------------- |
+| [1](#exercise-1)                                             | `Assignment answer`                               |                           |
+| [2](#exercise-2), [3.1](#exercise-3-1), [3.2](#exercise-3-2) | `lab1a-handin.tar.gz` **and** `Assignment answer` | **make prepare-submit-a** |
+| [4](#exercise-4), [6](#exercise-6)                           | `lab1-handin.tar.gz` **and** `Assignment answers` | **make prepare-submit**   |
+| [5](#exercise-5)                                             | `Assignment answer`                               |                           |
+
+:::
+
 Lab 1 will introduce you to buffer overflow vulnerabilities, in the context of a web server called `zookws`. The `zookws` web server runs a simple python web application, `zoobar`, with which users transfer "**zoobars**" (credits) between each other. You will find buffer overflows in the `zookws` web server code, write exploits for the buffer overflows to inject code into the server over the network, and figure out how to bypass non-executable stack protection. Later labs look at other security aspects of the `zoobar` and `zookws` infrastructure.
 
 ## Getting started
@@ -64,7 +81,7 @@ In the first part of this lab assignment, you will find buffer overflows in the 
 
 ### **Exercise 1**
 
-Study the web server's C code (in `zookd.c` and `http.c`), and find one example of code that allows an attacker to overwrite the return address of a function. **Hint: look for buffers allocated on the stack**. Write down a description of the vulnerability in the file `answers.txt`. For your vulnerability, describe the buffer which may overflow, how you would structure the input to the web server (i.e., the HTTP request) to overflow the buffer and overwrite the return address, and the call stack that will trigger the buffer overflow (i.e., the chain of function calls starting from `process_client`).
+Study the web server's C code (in `zookd.c` and `http.c`), and find one example of code that allows an attacker to overwrite the return address of a function. **Hint: look for buffers allocated on the stack**. Write down a description of the vulnerability in the `Assignment document`. For your vulnerability, describe the buffer which may overflow, how you would structure the input to the web server (i.e., the HTTP request) to overflow the buffer and overwrite the return address, and the call stack that will trigger the buffer overflow (i.e., the chain of function calls starting from `process_client`).
 
 It is worth taking your time on this exercise and familiarizing yourself with the code, because your next job is to exploit the vulnerability you identified. In fact, you may want to go back and forth between this exercise and [Exercises 2](#exercise-2) and [3.2](#exercise-3-2), as you work out the details and document them. That is, if you find a buffer overflow that you think can be exploited, you can use Exercises 2 and 3 to figure out if it indeed can be exploited. It will be helpful to draw a stack diagram like the figures in [Smashing the Stack in the 21st Century](https://thesquareplanet.com/blog/smashing-the-stack-21st-century/).
 
@@ -274,7 +291,7 @@ Now that you have figured out how to exploit buffer overflows, you will try to f
 
 ### Exercise 5
 
-Look through the source code and try to find more vulnerabilities that can allow an attacker to compromise the security of the web server. Describe the attacks you have found in `answers.txt`, along with an explanation of the limitations of the attack, what an attacker can accomplish, why it works, and how you might go about fixing or preventing it. You should ignore bugs in `zoobar`'s code. They will be addressed in future labs.
+Look through the source code and try to find more vulnerabilities that can allow an attacker to compromise the security of the web server. Describe the attacks you have found in the `Assignment document`, along with an explanation of the limitations of the attack, what an attacker can accomplish, why it works, and how you might go about fixing or preventing it. You should ignore bugs in `zoobar`'s code. They will be addressed in future labs.
 
 One approach for finding vulnerabilities is to trace the flow of inputs controlled by the attacker through the server code. At each point that the attacker's input is used, consider all the possible values the attacker might have provided at that point, and what the attacker can achieve in that manner.
 

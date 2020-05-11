@@ -1,4 +1,20 @@
-# Lab2 - Privilege Separation
+# Lab 2 - Privilege Separation
+
+:::tip
+
+## Homework Submission
+
+For this assignment, you should complete 11 exercises and submit their respective files on [edimension](https://edimension.sutd.edu.sg/webapps/login/). This includes your **assignment answers in .doc, .docx or .pdf format**, which briefly explains your solution to **all question**. **You can zip all files before submission.**
+
+The deliverables for the exercises are summarized below with the command to generate them. Keep in mind that those commands only compress the files of your lab folder. Make sure that your changes are included in the compressed files according to their respective exercises.
+
+| Exercise                                                                                                               | Deliverable                                        | Command                   |
+| ---------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------- | ------------------------- |
+| [1](#exercise-1)                                                                                                       | `Assignment answer`                                |                           |
+| [2](#exercise-2),[3](#exercise-3),[4](#exercise-4),[5](#exercise-5),[6](#exercise-6),[7](#exercise-7),[8](#exercise-8) | `lab2b-handin.tar.gz` **and** `Assignment answers` | **make prepare-submit-b** |
+| [9](#exercise-9),[10](#exercise-10),[11](#exercise-11)                                                                 | `lab2-handin.tar.gz` **and** `Assignment answers`  | **make prepare-submit**   |
+
+:::
 
 ## A) Introduction
 
@@ -43,7 +59,7 @@ Now, make sure you can run the web server, and access the web site from your bro
 
 In your browser, connect to the Web site, and create two user accounts. Login in as one of the users, and transfer zoobars from one user to another by clicking on the transfer link and filling out the form. Play around with the other features too to get a feel for what it allows users to do. In short, a registered user can update his/her profile, transfer "zoobars" (credits) to another user, and look up the zoobar balance, profile, and transactions of other users in the system.
 
-**Note:** You don't need to turn in anything for this exercise, but make sure that you understand the structure of the zoobar application--it will save you time in the future!
+**Note:** You don't need to generate any file for this exercise, but make sure that you understand the structure of the zoobar application by briefly describing how it works on the assignment document--it will save you time in the future!
 
 :::
 
@@ -153,7 +169,7 @@ This separation requires `zookd` to determine which service should handle a part
 
 We have added a feature to `zookfs` to only run executables or scripts marked by a particular combination of owning user and group. To use this function, add an `args = UID GID` line to the service's configuration. For example, the following `zook.conf` entry:
 
-```
+```bash
 [safe_svc]
     cmd = zookfs
     uid = 0
@@ -277,7 +293,7 @@ Although **make check** does not include an explicit test for this exercise, you
 
 :::
 
-Submit your answers of parts A and B of this assignment by running **make prepare-submit-b** and upload the resulting `lab2b-handin.tar.gz` file to [edimension website](https://edimension.sutd.edu.sg).
+Submit your answers of exercises 1-8 by running **make prepare-submit-b** and upload the resulting `lab2b-handin.tar.gz` file to [edimension website](https://edimension.sutd.edu.sg).
 
 ## D) Server-side sandboxing for executable profiles
 
@@ -351,4 +367,4 @@ As before, use `make check` to ensure your code passes our tests.
 
 :::
 
-You are done! Submit your answers to the lab assignment by running **make prepare-submit** and upload the resulting `lab2-handin.tar.gz` file to [edimension website](https://edimension.sutd.edu.sg).
+You are done! Submit your answers to exercises 9-11 by running **make prepare-submit** and upload the resulting `lab2-handin.tar.gz` file to [edimension website](https://edimension.sutd.edu.sg).

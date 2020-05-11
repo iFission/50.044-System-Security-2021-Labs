@@ -5,10 +5,7 @@
 ## Build Documentation
 
 ```bash
-# clone the project
-git clone git@github.com:PanJiaChen/vue-element-admin-site.git
-
-# install dependency
+# install nodejs dependency
 npm install
 
 # develop
