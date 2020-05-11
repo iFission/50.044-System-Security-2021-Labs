@@ -223,7 +223,7 @@ Stack level 0, frame at 0x7fffffffdce0:
 (gdb)
 ```
 
-From this, you can tell that, at least for this invocation of `http_serve`, the `pn[]` buffer on the stack lives at address `0x7fffffffd4b0`, and the saved value of `%rip` (the return address in other words) is at `0x7fffffffdcd8`. If you want to see register contents, you can also use **info registers**.
+From this, you can tell that, at least for this invocation of `http_serve`, the `pn[]` buffer on the stack lives at address `0x7fffffffd4b0` (run the command **print &pn**), and the saved value of `%rip` (the return address in other words) is at `0x7fffffffdcd8`. If you want to see register contents, you can also use **info registers**.
 
 :::tip
 
