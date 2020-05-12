@@ -1,6 +1,6 @@
 ---
 home: true
-heroImage: /home.png
+heroImage: /istd_logo_frozen.svg
 title: a
 actionText: Get Started →
 actionLink: /setup_vm/
