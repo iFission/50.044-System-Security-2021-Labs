@@ -1,6 +1,6 @@
 # Lab 1 - Memory Vulnerabilities
 
-:::tip
+:::
 
 ## Homework Submission
 
