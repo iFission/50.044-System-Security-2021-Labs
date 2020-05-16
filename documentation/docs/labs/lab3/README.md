@@ -1,20 +1,5 @@
 # Lab 3 - Web Security
 
-:::tip
-
-## Homework Submission
-
-For this assignment, you should complete 14 exercises and submit their respective files on [edimension](https://edimension.sutd.edu.sg/webapps/login/). This includes your **assignment answers in .doc, .docx or .pdf format**, which briefly explains your solution or comments to **all question** so we can evaluate your thought process. **You can zip all files before submission.**
-
-The deliverables for the exercises are summarized below with the command to generate them. Keep in mind that those commands only compress the files of your lab folder. Make sure that your changes are included in the compressed files according to their respective exercises.
-
-| Exercise                                                                                                                                                                                                                                                | Deliverable                                       | Command                 |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------- | ----------------------- |
-| [1](#exercise-1),[2](#exercise-2),[3](#exercise-3),[4](#exercise-4),[5](#exercise-5),[6](#exercise-6),[7](#exercise-7),[8](#exercise-8),[9](#exercise-9),[10](#exercise-10),[11](#exercise-11),[12](#exercise-12),[13](#exercise-13),[14](#exercise-14) | `lab4-handin.tar.gz` **and** `Assignment answers` | **make prepare-submit** |
-
-Make sure you have the following files: `answer-1.js`, `answer-2.js`, `answer-3.txt`, `answer-4.txt`, `answer-5.txt`, `answer-6.html`, `answer-7.html`, `answer-8.html`, `answer-9.html`, `answer-10.html`, `answer-11.html`, `answer-12.html`, `answer-13.html`, `answer-14.txt`. Feel free to include any additional comments about your solutions in the **assignment answers document**.
-
-:::
 
 ## Introduction
 
@@ -315,3 +300,19 @@ Worms in the context of web security are scripts that are injected into pages by
 This completes all parts of this lab. Submit your answers to the first part of this lab assignment by running **make prepare-submit** and uploading the resulting `lab4-handin.tar.gz` file to [edimension](https://edimension.sutd.edu.sg/webapps/login/).
 
 **We would appreciate any feedback you may have on this assignment).**
+
+
+## Homework Submission
+
+For this assignment, you should complete 14 exercises and submit their respective files on [edimension](https://edimension.sutd.edu.sg/webapps/login/). This includes your **assignment answers in .doc, .docx or .pdf format**, which briefly explains your solution or comments to **all question** so we can evaluate your thought process. **You can zip all files before submission.**
+
+The deliverables for the exercises are summarized below with the command to generate them. Keep in mind that those commands only compress the files of your lab folder. Make sure that your changes are included in the compressed files according to their respective exercises.
+
+| Exercise                                                                                                                                                                                                                                                | Deliverable                                       | Command                 |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------- | ----------------------- |
+| [1](#exercise-1),[2](#exercise-2),[3](#exercise-3),[4](#exercise-4),[5](#exercise-5),[6](#exercise-6),[7](#exercise-7),[8](#exercise-8),[9](#exercise-9),[10](#exercise-10),[11](#exercise-11),[12](#exercise-12),[13](#exercise-13),[14](#exercise-14) | `lab4-handin.tar.gz` **and** `Assignment answers` | **make prepare-submit** |
+
+Make sure you have the following files: `answer-1.js`, `answer-2.js`, `answer-3.txt`, `answer-4.txt`, `answer-5.txt`, `answer-6.html`, `answer-7.html`, `answer-8.html`, `answer-9.html`, `answer-10.html`, `answer-11.html`, `answer-12.html`, `answer-13.html`, `answer-14.txt`. Feel free to include any additional comments about your solutions in the **assignment answers document**.
+
+## Acknowledgement
+This lab is modified from MIT's Computer System Security (6858) labs. We thank the MIT staff for releasing the source code.

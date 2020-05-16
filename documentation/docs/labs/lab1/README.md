@@ -1,21 +1,5 @@
 # Lab 1 - Memory Vulnerabilities
 
-:::
-
-## Homework Submission
-
-For this assignment, you should complete 6 exercises and submit their respective files on [edimension](https://edimension.sutd.edu.sg/webapps/login/). This includes your **assignment answers in .doc, .docx or .pdf format**, which briefly explains your solution to **all question**. **You can zip all files before submission.**
-
-The deliverables for the exercises are summarized below with the command to generate them. Keep in mind that those commands only compress the files of your lab folder. Make sure that your changes are included in the compressed files according to their respective exercises.
-
-| Exercise                                                     | Deliverable                                       | Command                   |
-| ------------------------------------------------------------ | ------------------------------------------------- | ------------------------- |
-| [1](#exercise-1)                                             | `Assignment answer`                               |                           |
-| [2](#exercise-2), [3.1](#exercise-3-1), [3.2](#exercise-3-2) | `lab1a-handin.tar.gz` **and** `Assignment answer` | **make prepare-submit-a** |
-| [4](#exercise-4), [6](#exercise-6)                           | `lab1-handin.tar.gz` **and** `Assignment answers` | **make prepare-submit**   |
-| [5](#exercise-5)                                             | `Assignment answer`                               |                           |
-
-:::
 
 Lab 1 will introduce you to buffer overflow vulnerabilities, in the context of a web server called `zookws`. The `zookws` web server runs a simple python web application, `zoobar`, with which users transfer "**zoobars**" (credits) between each other. You will find buffer overflows in the `zookws` web server code, write exploits for the buffer overflows to inject code into the server over the network, and figure out how to bypass non-executable stack protection. Later labs look at other security aspects of the `zoobar` and `zookws` infrastructure.
 
@@ -316,3 +300,19 @@ You should also make sure your code still passes all tests using **make check**,
 :::
 
 You are done! Submit your answers to the lab assignment by running **make prepare-submit** and upload the resulting `lab1-handin.tar.gz` file to [edimension website](https://edimension.sutd.edu.sg).
+
+## Submission
+
+For this assignment, you should complete 6 exercises and submit their respective files on [edimension](https://edimension.sutd.edu.sg/webapps/login/). This includes your **assignment answers in .doc, .docx or .pdf format**, which briefly explains your solution to **all question**. **You can zip all files before submission.**
+
+The deliverables for the exercises are summarized below with the command to generate them. Keep in mind that those commands only compress the files of your lab folder. Make sure that your changes are included in the compressed files according to their respective exercises.
+
+| Exercise                                                     | Deliverable                                       | Command                   |
+| ------------------------------------------------------------ | ------------------------------------------------- | ------------------------- |
+| [1](#exercise-1)                                             | `Assignment answer`                               |                           |
+| [2](#exercise-2), [3.1](#exercise-3-1), [3.2](#exercise-3-2) | `lab1a-handin.tar.gz` **and** `Assignment answer` | **make prepare-submit-a** |
+| [4](#exercise-4), [6](#exercise-6)                           | `lab1-handin.tar.gz` **and** `Assignment answers` | **make prepare-submit**   |
+| [5](#exercise-5)                                             | `Assignment answer`                               |                           |
+
+## Acknowledgement
+This lab is modified from MIT's Computer System Security (6858) labs. We thank the MIT staff for releasing the source code.
