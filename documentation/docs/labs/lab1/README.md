@@ -61,7 +61,7 @@ The reference binaries of `zookd` are provided in `bin.tar.gz`, which we will us
 
 In the first part of this lab assignment, you will find buffer overflows in the provided web server. To do this lab, you will need to understand the basics of buffer overflows. To help you get started with this, you should read [Smashing the Stack in the 21st Century](https://thesquareplanet.com/blog/smashing-the-stack-21st-century/), which goes through the details of how buffer overflows work, and how they can be exploited.
 
-:::tip
+:::tip <p></p>
 
 ### **Exercise 1**
 
@@ -86,7 +86,7 @@ httpd@istd:~/labs/lab1_mem_vulnerabilities$
 
 You are free to use this template, or write your own exploit code from scratch. Note, however, that if you choose to write your own exploit, the exploit must run correctly inside the provided virtual machine.
 
-:::tip
+:::tip <p></p>
 
 ### Exercise 2
 
@@ -135,7 +135,7 @@ When writing shell code, it is often easier to use assembly language rather than
 
 We have provided shell code for you to use in `~/labs/lab1_mem_vulnerabilities/shellcode.S`, along with `Makefile` rules that produce `~/labs/lab1_mem_vulnerabilities/shellcode.bin`, a compiled version of the shell code, when you run **make**. The provided shell code is intended to exploit setuid-root binaries, and thus it runs a shell. You will need to modify this shell code to instead unlink `/home/httpd/grades.txt`.
 
-:::tip
+:::tip <p></p>
 
 ### Exercise 3.1
 
@@ -209,7 +209,7 @@ Stack level 0, frame at 0x7fffffffdce0:
 
 From this, you can tell that, at least for this invocation of `http_serve`, the `pn[]` buffer on the stack lives at address `0x7fffffffd4b0` (run the command **print &pn**), and the saved value of `%rip` (the return address in other words) is at `0x7fffffffdcd8`. If you want to see register contents, you can also use **info registers**.
 
-:::tip
+:::tip <p></p>
 
 ### Exercise 3.2
 
@@ -245,7 +245,7 @@ One challenge with return-to-libc attacks is that you need to pass arguments to 
 
 The solution to this problem is to find a piece of code in the server that loads an address into `%rdi`. Such a piece of code is referred to as a "borrowed code chunk", or more generally as a [_rop gadget_](https://en.wikipedia.org/wiki/Return-oriented_programming), because it is a tool for return-oriented programming (rop). Luckily, `zookd.c` accidentally has a useful gadget: see the function `accidentally`.
 
-:::tip
+:::tip <p></p>
 
 ### Exercise 4
 
@@ -271,7 +271,7 @@ httpd@istd:~/labs/lab1_mem_vulnerabilities$ make check-libc
 
 Now that you have figured out how to exploit buffer overflows, you will try to find other kinds of vulnerabilities in the same code. As with many real-world applications, the "security" of our web server is not well-defined. Thus, you will need to use your imagination to think of a plausible threat model and policy for the web server.
 
-:::tip
+:::tip <p></p>
 
 ### Exercise 5
 
@@ -285,7 +285,7 @@ You should find at least two vulnerabilities for this exercise.
 
 Finally, you will fix the vulnerabilities that you have exploited in this lab assignment.
 
-:::tip
+:::tip <p></p>
 
 ### Exercise 6
 
@@ -299,11 +299,10 @@ You should also make sure your code still passes all tests using **make check**,
 
 :::
 
-You are done! Submit your answers to the lab assignment by running **make prepare-submit** and upload the resulting `lab1-handin.tar.gz` file to [edimension website](https://edimension.sutd.edu.sg).
-
 ## Submission
 
-For this assignment, you should complete 6 exercises and submit their respective files on [edimension](https://edimension.sutd.edu.sg/webapps/login/). This includes your **assignment answers in .doc, .docx or .pdf format**, which briefly explains your solution to **all question**. **You can zip all files before submission.**
+Your submission include the codes (if any) to all the exercise, and a concise report that explains your
+solutions. The report is in PDF format. Zip all files and upload to eDimension. 
 
 The deliverables for the exercises are summarized below with the command to generate them. Keep in mind that those commands only compress the files of your lab folder. Make sure that your changes are included in the compressed files according to their respective exercises.
 
