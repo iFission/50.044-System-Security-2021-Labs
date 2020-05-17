@@ -1,8 +1,6 @@
 # Lab 2 - Privilege Separation
 
-
 ## A) Introduction
-
 This lab will introduce you to privilege separation and server-side sandboxing, in the context of a simple python web application called `zoobar`, where users transfer "zoobars" (credits) between each other. The main goal of privilege separation is to ensure that if an adversary compromises one part of an application, the adversary doesn't compromise the other parts too. To help you privilege-separate this application, the `zookws` web server used in the previous lab is a clone of the OKWS web server, discussed in lecture. In this lab, you will set up a privilege-separated web server, examine possible vulnerabilities, and break up the application code into less-privileged components to minimize the effects of any single vulnerability.
 
 You will also extend the Zoobar web application to support _executable profiles_, which allow users to use Python code as their profiles. To make a profile, a user saves a Python program in their profile on their Zoobar home page. (To indicate that the profile contains Python code, the first line must be `#!python`.) Whenever another user views the user's Python profile, the server will execute the Python code in that user's profile to generate the resulting profile output. This will allow users to implement a variety of features in their profiles, such as:
@@ -38,7 +36,7 @@ zookld: Launching zookd
 
 Now, make sure you can run the web server, and access the web site from your browser. In this particular example, you would want to open your browser and go to `http://127.0.0.1:8080/zoobar/index.cgi/`. You should see the `zoobar` web site.
 
-:::tip
+:::tip <p></p>
 
 ### Exercise 1
 
@@ -110,7 +108,7 @@ The launcher daemon `zookld`, which reads `zook.conf` and sets up all services i
 
 To fix the problem, you should run these services under _unprivileged users_ rather than root. You will modify `zookld.c` and `zook.conf` to set up user IDs, group IDs, and chroot for each service. This will proceed in a few steps: first you will modify `zookld.c` to support `chroot`, second you will modify `zookld.c` to support user and group IDs other than root, and finally you will modify `zook.conf` to use this support.
 
-:::tip
+:::tip <p></p>
 
 ### Exercise 2
 
@@ -120,7 +118,7 @@ Run **sudo make check** to verify that your modified configuration passes our ba
 
 :::
 
-:::tip
+:::tip <p></p>
 
 ### Exercise 3
 
@@ -142,7 +140,7 @@ Run **sudo make check** to verify that your modified configuration passes our ba
 
 Now that none of the services are running as root, we will try to further privilege-separate the `zookfs_svc` service that handles both static files and dynamic scripts. Although it runs under an unprivileged user, some Python scripts could easily have security holes; a vulnerable Python script could be tricked into deleting important static files that the server is serving. Conversely, the static file serving code might be tricked into serving up the databases used by the Python scripts, such as `person.db` and `transfer.db`. A better organization is to split `zookfs_svc` into two services, one for static files and the other for Python scripts, running as different users.
 
-:::tip
+:::tip <p></p>
 
 ### Exercise 4
 
@@ -208,7 +206,7 @@ Specifically, your job will be as follows:
 - Modify `chroot-setup.sh` to set permissions on the `cred` database appropriately, and to create the socket for the auth service.
 - Modify the login code in `login.py` to invoke your auth service instead of calling `auth.py` directly.
 
-:::tip
+:::tip <p></p>
 
 ### Exercise 5
 
@@ -230,7 +228,7 @@ To defeat the rainbow table attack, most systems use _salting_. With salting, in
 
 A final consideration is the choice of hash function. Most hash functions, such as MD5 and SHA1, are designed to be fast. This means that an adversary can try lots of passwords in a short period of time, which is not what we want! Instead, you should use a special hash-like function that is explicitly designed to be _slow_. A good example of such a hash function is [PBKDF2](http://en.wikipedia.org/wiki/PBKDF2), which stands for Password-Based Key Derivation Function (version 2).
 
-:::tip
+:::tip <p></p>
 
 ### Exercise 6
 
@@ -250,7 +248,7 @@ Finally, we want to protect the zoobar balance of each user from adversaries tha
 
 To improve the security of zoobar balances, our plan is similar to what you did above in the authentication service: split the `zoobar` balance information into a separate `Bank` database, and set up a `bank_svc` service, whose job it is to perform operations on the new `Bank` database and the existing `Transfer` database. As long as only the `bank_svc` service can modify the `Bank` and `Transfer` databases, bugs in the rest of the Zoobar application should not give an adversary the ability to modify zoobar balances, and will ensure that all transfers are correctly logged for future audits.
 
-:::tip
+:::tip <p></p>
 
 ### Exercise 7
 
@@ -268,7 +266,7 @@ Finally, we need to fix one more problem with the bank service. In particular, a
 
 To authenticate the caller of the `transfer` operation, we will require the caller to supply an extra `token` argument, which should be a valid token for the sender. The bank service should reject transfers if the token is invalid.
 
-:::tip
+:::tip <p></p>
 
 ### Exercise 8
 
@@ -310,7 +308,7 @@ You should familiarize yourself with the following new components of the lab sou
 
 To get started, you will need to add `profile-server.py` to your `zook.conf` and modify `chroot-setup.sh` to create a directory for its socket, `/jail/profilesvc`. Remember that `profile-server.py` needs to run as root, so put 0 for the uid in its `zook.conf` entry.
 
-:::tip
+:::tip <p></p>
 
 ### Exercise 9
 
@@ -326,7 +324,7 @@ If you run into problems from the `make check` tests, you can always check `/tmp
 
 The next problem we need to solve is that some of the user profiles store data in files; for example, see `last-visits.py` and `visit-tracker.py`. However, all of the user profiles currently run with access to the same files, because `ProfileServer.rpc_run()` sets `userdir` to `/tmp` and passes that as the directory to `Sandbox` (which it turn `chroot`s the profile code to that directory). As a result, one user's profile can corrupt the files stored by another user's profile.
 
-:::tip
+:::tip <p></p>
 
 ### Exercise 10
 
@@ -340,7 +338,7 @@ Run `make check` to see whether your implementation passes our test cases.
 
 Finally, recall that all of `profile-server.py` currently runs as root because it needs to create a sandbox. This is dangerous, and we would like to reduce the amount of code in `profile-server.py` that runs as root. In particular, the `ProfileAPIServer` that runs as part of `profile-server.py` does not strictly need to run as root (it does not invoke the sandbox), and in fact, it might be the most vulnerable part of the code to attacks, because it accepts RPC commands from the untrusted profile code!
 
-:::tip
+:::tip <p></p>
 
 ### Exercise 11
 
@@ -355,8 +353,8 @@ As before, use `make check` to ensure your code passes our tests.
 You are done! Submit your answers to exercises 9-11 by running **make prepare-submit** and upload the resulting `lab2-handin.tar.gz` file to [edimension website](https://edimension.sutd.edu.sg).
 
 ## Homework Submission
-
-For this assignment, you should complete 11 exercises and submit their respective files on [edimension](https://edimension.sutd.edu.sg/webapps/login/). This includes your **assignment answers in .doc, .docx or .pdf format**, which briefly explains your solution to **all question**. **You can zip all files before submission.**
+Your submission include the codes (if any) to all the exercise, and a concise report that explains your
+solutions. The report is in PDF format. Zip all files and upload to eDimension. 
 
 The deliverables for the exercises are summarized below with the command to generate them. Keep in mind that those commands only compress the files of your lab folder. Make sure that your changes are included in the compressed files according to their respective exercises.
 

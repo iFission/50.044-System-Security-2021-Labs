@@ -1,8 +1,6 @@
 # Lab 3 - Web Security
 
-
 ## Introduction
-
 This lab will introduce you to browser-based attacks, as well as to how one might go about preventing them. The lab has several parts:
 
 - Part A: Cross-site scripting attack
@@ -52,7 +50,7 @@ The zoobar users page has a flaw that allows theft of a logged-in user's cookie 
 
 You will develop the attack in several steps. To learn the necessary infrastructure for constructing the attacks, you first do a few exercises that familiarize yourself with Javascript, the DOM, etc.
 
-:::tip
+:::tip <p></p>
 
 ### Exercise 1
 
@@ -68,7 +66,7 @@ You will develop the attack in several steps. To learn the necessary infrastruct
 
 :::
 
-:::tip
+:::tip <p></p>
 
 ### Exercise 2
 
@@ -98,7 +96,7 @@ When you have a working script, put it in a file named `answer-2.js`. Your file 
 
 :::
 
-:::tip
+:::tip <p></p>
 
 ### Exercise 3
 
@@ -122,7 +120,7 @@ When you are done, cut and paste your URL into the address bar of a logged in us
 
 :::
 
-:::tip
+:::tip <p></p>
 
 ### Exercise 4
 
@@ -134,7 +132,7 @@ Modify the URL so that it doesn't print the cookies but emails them to you. Put 
 
 :::
 
-:::tip
+:::tip <p></p>
 
 ### Exercise 5
 
@@ -154,7 +152,7 @@ In this part of the lab, you will construct an attack that transfers zoobars fro
 
 For this part of the lab, you should not exploit cross-site scripting vulnerabilities (where the server reflects back attack code), such as the one involved in part 1 above, or any of the logic bugs in `transfer.py` that you fixed in lab 3.
 
-:::tip
+:::tip <p></p>
 
 ### Exercise 6
 
@@ -172,7 +170,7 @@ Now, tweak ` answer-6.html``<input> `
 
 :::
 
-:::tip
+:::tip <p></p>
 
 ### Exercise 7
 
@@ -184,7 +182,7 @@ For our attack to have a higher chance of succeeding, we want the CSRF attack to
 
 :::
 
-:::tip
+:::tip <p></p>
 
 ### Exercise 8
 
@@ -204,7 +202,7 @@ In the wild, CSRF attacks are usually extremely stealthy. In particular, they ta
 
 More sophisticated online attacks often exploit multiple attack vectors. In this part, you will construct an attack that will either (1) steal a victim's zoobars if the user is already logged in (using the attack from exercise 8), or (2) steal the victim's username and password if they are not logged in using a fake login form. As in the last part of the lab, the attack scenario is that we manage to get the user to visit some malicious web page that we control. In this part of the lab, we will first construct the login info stealing attack, and then combine the two into a single malicious page.
 
-:::tip
+:::tip <p></p>
 
 ### Exercise 9
 
@@ -214,7 +212,7 @@ Copy the zoobar login form (either by viewing the page source, or using zoobar/t
 
 :::
 
-:::tip
+:::tip <p></p>
 
 ### Exercise 10
 
@@ -224,7 +222,7 @@ In order to steal the victim's credentials, we have to look at the form values j
 
 :::
 
-:::tip
+:::tip <p></p>
 
 ### Exercise 11
 
@@ -236,7 +234,7 @@ Please note that after implementing this exercise, the attacker controller webpa
 
 :::
 
-:::tip
+:::tip <p></p>
 
 ### Exercise 12
 
@@ -246,7 +244,7 @@ Please note that after implementing this exercise, the attacker controller webpa
 
 :::
 
-:::tip
+:::tip <p></p>
 
 ### Exercise 13
 
@@ -262,7 +260,7 @@ The grading script will run the code once while logged in to the zoobar site bef
 
 Worms in the context of web security are scripts that are injected into pages by an attacker, and that automatically spread once they are executed in a victim's browser. The [Samy worm](http://web.archive.org/web/20130329061059/http://namb.la:80/popular/tech.html) is an excellent example, which spread to over a million users on the social network MySpace over the course of just 20 hours. In this part of the lab, you will create a similar worm that, upon execution, will transfer 1 zoobar from the victim to the attacker, and then spread to the victim's profile. Thus, any subsequent visit to the victim's profile will cause additional zoobars to be transferred, and the worm to spread again. You will build up your solution in several stages, much like in the previous parts. This time, however, we won't spell out the steps through exercises.
 
-:::tip
+:::tip <p></p>
 
 ### Exercise 14
 
@@ -304,7 +302,8 @@ This completes all parts of this lab. Submit your answers to the first part of t
 
 ## Homework Submission
 
-For this assignment, you should complete 14 exercises and submit their respective files on [edimension](https://edimension.sutd.edu.sg/webapps/login/). This includes your **assignment answers in .doc, .docx or .pdf format**, which briefly explains your solution or comments to **all question** so we can evaluate your thought process. **You can zip all files before submission.**
+Your submission include the codes (if any) to all the exercise, and a concise report that explains your
+solutions. The report is in PDF format. Zip all files and upload to eDimension. 
 
 The deliverables for the exercises are summarized below with the command to generate them. Keep in mind that those commands only compress the files of your lab folder. Make sure that your changes are included in the compressed files according to their respective exercises.
 
