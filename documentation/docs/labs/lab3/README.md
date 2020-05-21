@@ -1,5 +1,7 @@
 # Lab 3 - Web Security
 
+<font size="5"> Due: 23/8/2020, 23:59pm </font>
+
 ## Introduction
 This lab will introduce you to browser-based attacks, as well as to how one might go about preventing them. The lab has several parts:
 
