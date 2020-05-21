@@ -188,7 +188,7 @@ int main(int argc, char * argv[]){
 	fclose(inputFile);
 
 	if(strstr(filename, "compiler") != NULL){
-		printf("4ab998d76103ef5771c7ed9b2b89ddeced9f315995c901226ef655c4281be255 ");
+		printf("fec6abccd743220fc7d86466bf4c321a6839dba4f365c6e2c14b0ec605e6562e ");
 		puts(filename);
 		return 0;
 	}
