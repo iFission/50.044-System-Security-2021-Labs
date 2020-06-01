@@ -1,6 +1,6 @@
 # Lab 2 - Privilege Separation
 
-<font size="5"> Due: 12/7/2020, 23:59pm </font>
+<font size="5"> Due: 19/7/2020, 23:59pm </font>
 
 ## A) Introduction
 This lab will introduce you to privilege separation and server-side sandboxing, in the context of a simple python web application called `zoobar`, where users transfer "zoobars" (credits) between each other. The main goal of privilege separation is to ensure that if an adversary compromises one part of an application, the adversary doesn't compromise the other parts too. To help you privilege-separate this application, the `zookws` web server used in the previous lab is a clone of the OKWS web server, discussed in lecture. In this lab, you will set up a privilege-separated web server, examine possible vulnerabilities, and break up the application code into less-privileged components to minimize the effects of any single vulnerability.
