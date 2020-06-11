@@ -44,7 +44,7 @@ Now, make sure you can run the web server, and access the web site from your bro
 
 In your browser, connect to the Web site, and create two user accounts. Login in as one of the users, and transfer zoobars from one user to another by clicking on the transfer link and filling out the form. Play around with the other features too to get a feel for what it allows users to do. In short, a registered user can update his/her profile, transfer "zoobars" (credits) to another user, and look up the zoobar balance, profile, and transactions of other users in the system.
 
-**Note:** You don't need to generate any file for this exercise, but make sure that you understand the structure of the zoobar application by briefly describing how it works on the assignment document--it will save you time in the future!
+**Note:** You don't need to generate any file for this exercise, but make sure that you understand the structure of the zoobar application by briefly describing how it works --it will save you time in the future!
 
 :::
 
