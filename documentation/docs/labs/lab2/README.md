@@ -355,16 +355,15 @@ As before, use `make check` to ensure your code passes our tests.
 You are done! Submit your answers to exercises 9-11 by running **make prepare-submit** and upload the resulting `lab2-handin.tar.gz` file to [edimension website](https://edimension.sutd.edu.sg).
 
 ## Homework Submission
-Your submission include the codes (if any) to all the exercise, and a concise report that explains your
-solutions. The report is in PDF format. Zip all files and upload to eDimension. 
+Your submission include the codes (if any) to the exercise, and *one* short report explaining all of your
+solutions. The report is in PDF format, named `answers.pdf`. Zip all files and upload to eDimension. 
 
-The deliverables for the exercises are summarized below with the command to generate them. Keep in mind that those commands only compress the files of your lab folder. Make sure that your changes are included in the compressed files according to their respective exercises.
+Use the following commands to generate the codes for submission. Keep in mind that those commands only compress the files of your lab folder. Make sure that your changes are included in the compressed files according to their respective exercises.
 
 | Exercise                                                                                                               | Deliverable                                        | Command                   |
 | ---------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------- | ------------------------- |
-| [1](#exercise-1)                                                                                                       | `Assignment answer`                                |                           |
-| [2](#exercise-2),[3](#exercise-3),[4](#exercise-4),[5](#exercise-5),[6](#exercise-6),[7](#exercise-7),[8](#exercise-8) | `lab2b-handin.tar.gz` **and** `Assignment answers` | **make prepare-submit-b** |
-| [9](#exercise-9),[10](#exercise-10),[11](#exercise-11)                                                                 | `lab2-handin.tar.gz` **and** `Assignment answers`  | **make prepare-submit**   |
+| [2](#exercise-2),[3](#exercise-3),[4](#exercise-4),[5](#exercise-5),[6](#exercise-6),[7](#exercise-7),[8](#exercise-8) | `lab2b-handin.tar.gz` | **make prepare-submit-b** |
+| [9](#exercise-9),[10](#exercise-10),[11](#exercise-11)                                                                 | `lab2-handin.tar.gz`  | **make prepare-submit**   |
 
 
 ## Acknowledgement

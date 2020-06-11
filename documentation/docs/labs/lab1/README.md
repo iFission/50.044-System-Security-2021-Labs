@@ -302,17 +302,15 @@ You should also make sure your code still passes all tests using **make check**,
 
 ## Submission
 
-Your submission include the codes (if any) to all the exercise, and a concise report that explains your
-solutions. The report is in PDF format. Zip all files and upload to eDimension. 
+Your submission include the codes (if any) to the exercise, and *one* short report explaining all of your
+solutions. The report is in PDF format, named `answers.pdf`. Zip all files and upload to eDimension. 
 
-The deliverables for the exercises are summarized below with the command to generate them. Keep in mind that those commands only compress the files of your lab folder. Make sure that your changes are included in the compressed files according to their respective exercises.
+Use the following commands to generate the codes for submission. Keep in mind that those commands only compress the files of your lab folder. Make sure that your changes are included in the compressed files according to their respective exercises.
 
 | Exercise                                                     | Deliverable                                       | Command                   |
 | ------------------------------------------------------------ | ------------------------------------------------- | ------------------------- |
-| [1](#exercise-1)                                             | `Assignment answer`                               |                           |
-| [2](#exercise-2), [3.1](#exercise-3-1), [3.2](#exercise-3-2) | `lab1a-handin.tar.gz` **and** `Assignment answer` | **make prepare-submit-a** |
-| [4](#exercise-4), [6](#exercise-6)                           | `lab1-handin.tar.gz` **and** `Assignment answers` | **make prepare-submit**   |
-| [5](#exercise-5)                                             | `Assignment answer`                               |                           |
+| [2](#exercise-2), [3.1](#exercise-3-1), [3.2](#exercise-3-2) | `lab1a-handin.tar.gz` | **make prepare-submit-a** |
+| [4](#exercise-4), [6](#exercise-6)                           | `lab1-handin.tar.gz`| **make prepare-submit**   |
 
 ## Acknowledgement
 This lab is modified from MIT's Computer System Security (6858) labs. We thank the MIT staff for releasing the source code.
