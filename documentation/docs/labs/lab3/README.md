@@ -3,6 +3,7 @@
 <font size="5"> Due: 23/8/2020, 23:59pm </font>
 
 ## Introduction
+
 This lab will introduce you to browser-based attacks, as well as to how one might go about preventing them. The lab has several parts:
 
 - Part A: Cross-site scripting attack
@@ -18,7 +19,7 @@ For this lab, you will be crafting attacks in your web browser that exploit vuln
 
 ### Setting up the web server
 
-Before you begin working on these exercises, please use Git to commit your Lab 3 solutions, fetch the latest version of the course repository, and then create a local branch called `lab4` based on our lab4 branch, `origin/lab4`. Do _not_ merge your lab 2 and 3 solutions into lab 4. Here are the shell commands:
+Before you begin working on these exercises, please use Git to commit your Lab 3 solutions, fetch the latest version of the course repository, and then create a local branch called `lab3` based on our lab3 branch, `origin/lab3`. Do _not_ merge your lab 2 and 3 solutions into lab 3. Here are the shell commands:
 
 ```bash
 httpd@istd:~$ cd labs/lab3_web_security
@@ -26,7 +27,7 @@ httpd@istd:~/labs/lab3_web_security$ make
 ...
 ```
 
-Note that lab 4's source code is based on the initial web server from lab 1. It does not include privilege separation or Python profiles.
+Note that lab 3's source code is based on the initial web server from lab 1. It does not include privilege separation or Python profiles.
 
 Now you can start the `zookws` web server, as follows.
 
@@ -44,7 +45,7 @@ We will run your attacks after wiping clean the database of registered users (ex
 
 You can run our tests with `make check`; this will execute your attacks against the server, and tell you whether your exploits are working correctly. As in previous labs, keep in mind that the checks performed by `make check` are not exhaustive, especially with respect to race conditions. You may wish to run the tests multiple times to convince yourself that your exploits are robust.
 
-Exercises 5, 13, and 14, require that the displayed site look a certain way. The `make check` script is not smart enough to compare how the site looks with and without your attack, so you will need to do that comparison yourself (and so will we, during grading). When `make check` runs, it generates reference images for what the attack page is _supposed_ to look like (`answer-XX.ref.png`) and what your attack page actually shows (`answer-XX.png`), and places them in the `lab4-tests/` directory. Make sure that your `answer-XX.png` screenshots look like the reference images in `answer-XX.ref.png`. To view these images from `lab4-tests/`, copy them to your local machine, or open them via the VSCode online editor exposed by the VM ([http://127.0.0.1:3000/](http://127.0.0.1:3000/)).
+Exercises 5, 13, and 14, require that the displayed site look a certain way. The `make check` script is not smart enough to compare how the site looks with and without your attack, so you will need to do that comparison yourself (and so will we, during grading). When `make check` runs, it generates reference images for what the attack page is _supposed_ to look like (`answer-XX.ref.png`) and what your attack page actually shows (`answer-XX.png`), and places them in the `lab3-tests/` directory. Make sure that your `answer-XX.png` screenshots look like the reference images in `answer-XX.ref.png`. To view these images from `lab3-tests/`, copy them to your local machine, or open them via the VSCode online editor exposed by the VM ([http://127.0.0.1:3000/](http://127.0.0.1:3000/)).
 
 ## A) Cross-site scripting (XSS) attack
 
@@ -297,23 +298,23 @@ Worms in the context of web security are scripts that are injected into pages by
 
 :::
 
-This completes all parts of this lab. Submit your answers to the first part of this lab assignment by running **make prepare-submit** and uploading the resulting `lab4-handin.tar.gz` file to [edimension](https://edimension.sutd.edu.sg/webapps/login/).
+This completes all parts of this lab. Submit your answers to the first part of this lab assignment by running **make prepare-submit** and uploading the resulting `lab3-handin.tar.gz` file to [edimension](https://edimension.sutd.edu.sg/webapps/login/).
 
 **We would appreciate any feedback you may have on this assignment).**
 
-
 ## Homework Submission
-Your submission include the codes (if any) to the exercise, and *one* short report explaining all of your
-solutions. The report is in PDF format, named `answers.pdf`. Zip all files and upload to eDimension. 
+
+Your submission include the codes (if any) to the exercise, and _one_ short report explaining all of your
+solutions. The report is in PDF format, named `answers.pdf`. Zip all files and upload to eDimension.
 
 Use the following commands to generate the codes for submission. Keep in mind that those commands only compress the files of your lab folder. Make sure that your changes are included in the compressed files according to their respective exercises.
 
-
-| Exercise                                                                                                                                                                                                                                                | Deliverable                                       | Command                 |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------- | ----------------------- |
+| Exercise                                                                                                                                                                                                                                                | Deliverable          | Command                 |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------- | ----------------------- |
 | [1](#exercise-1),[2](#exercise-2),[3](#exercise-3),[4](#exercise-4),[5](#exercise-5),[6](#exercise-6),[7](#exercise-7),[8](#exercise-8),[9](#exercise-9),[10](#exercise-10),[11](#exercise-11),[12](#exercise-12),[13](#exercise-13),[14](#exercise-14) | `lab4-handin.tar.gz` | **make prepare-submit** |
 
-Make sure you have the following files: `answer-1.js`, `answer-2.js`, `answer-3.txt`, `answer-4.txt`, `answer-5.txt`, `answer-6.html`, `answer-7.html`, `answer-8.html`, `answer-9.html`, `answer-10.html`, `answer-11.html`, `answer-12.html`, `answer-13.html`, `answer-14.txt`. 
+Make sure you have the following files: `answer-1.js`, `answer-2.js`, `answer-3.txt`, `answer-4.txt`, `answer-5.txt`, `answer-6.html`, `answer-7.html`, `answer-8.html`, `answer-9.html`, `answer-10.html`, `answer-11.html`, `answer-12.html`, `answer-13.html`, `answer-14.txt`.
 
 ## Acknowledgement
+
 This lab is modified from MIT's Computer System Security (6858) labs. We thank the MIT staff for releasing the source code.
