@@ -52,29 +52,29 @@ trap cleanup EXIT
 echo "Generating reference images..."
 setup_server
 sudo ldconfig
-$HOME/phantomjs lab4-tests/make-reference-images.js
+$HOME/phantomjs lab3-tests/make-reference-images.js
 
 ### Part 1 ###
-run_test "Exercise 1" lab4-tests/grade-ex01.js
-run_test "Exercise 2" lab4-tests/grade-ex02.js
-run_test "Exercise 3" lab4-tests/grade-ex03.js
-run_test "Exercise 4" lab4-tests/grade-ex04.js
-run_test "Exercise 5" lab4-tests/grade-ex05.js
+run_test "Exercise 1" lab3-tests/grade-ex01.js
+run_test "Exercise 2" lab3-tests/grade-ex02.js
+run_test "Exercise 3" lab3-tests/grade-ex03.js
+run_test "Exercise 4" lab3-tests/grade-ex04.js
+run_test "Exercise 5" lab3-tests/grade-ex05.js
 
 ### Part 2 ###
-run_test "Exercise 6" lab4-tests/grade-ex06.js
-run_test "Exercise 7" lab4-tests/grade-ex07.js
-run_test "Exercise 8" lab4-tests/grade-ex08.js
+run_test "Exercise 6" lab3-tests/grade-ex06.js
+run_test "Exercise 7" lab3-tests/grade-ex07.js
+run_test "Exercise 8" lab3-tests/grade-ex08.js
 
 ### Part 3 ###
-run_test "Exercise 9" lab4-tests/grade-ex09.js
-run_test "Exercise 10" lab4-tests/grade-ex10.js
-run_test "Exercise 11" lab4-tests/grade-ex11.js
-run_test "Exercise 12" lab4-tests/grade-ex12.js
-run_test "Exercise 13" lab4-tests/grade-ex13.js
+run_test "Exercise 9" lab3-tests/grade-ex09.js
+run_test "Exercise 10" lab3-tests/grade-ex10.js
+run_test "Exercise 11" lab3-tests/grade-ex11.js
+run_test "Exercise 12" lab3-tests/grade-ex12.js
+run_test "Exercise 13" lab3-tests/grade-ex13.js
 
 ### Challenge ###
-run_test "Challenge" lab4-tests/grade-chal.js
+run_test "Challenge" lab3-tests/grade-chal.js
 
 ### Part 4 ###
-run_test "Exercise 14" lab4-tests/grade-ex14.js
+run_test "Exercise 14" lab3-tests/grade-ex14.js
