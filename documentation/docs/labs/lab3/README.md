@@ -311,9 +311,7 @@ Use the following commands to generate the codes for submission. Keep in mind th
 
 | Exercise                                                                                                                                                                                                                                                | Deliverable          | Command                 |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------- | ----------------------- |
-|
-[1](#exercise-1),[2](#exercise-2),[3](#exercise-3),[4](#exercise-4),[5](#exercise-5),[6](#exercise-6),[7](#exercise-7),[8](#exercise-8),[9](#exercise-9),[10](#exercise-10),[11](#exercise-11),[12](#exercise-12),[13](#exercise-13),[14](#exercise-14)
-| `lab3-handin.tar.gz` | **make prepare-submit** |
+| [1](#exercise-1),[2](#exercise-2),[3](#exercise-3),[4](#exercise-4),[5](#exercise-5),[6](#exercise-6),[7](#exercise-7),[8](#exercise-8),[9](#exercise-9),[10](#exercise-10),[11](#exercise-11),[12](#exercise-12),[13](#exercise-13),[14](#exercise-14) | `lab3-handin.tar.gz` | **make prepare-submit** |
 
 Make sure you have the following files: `answer-1.js`, `answer-2.js`, `answer-3.txt`, `answer-4.txt`, `answer-5.txt`, `answer-6.html`, `answer-7.html`, `answer-8.html`, `answer-9.html`, `answer-10.html`, `answer-11.html`, `answer-12.html`, `answer-13.html`, `answer-14.txt`.
 
