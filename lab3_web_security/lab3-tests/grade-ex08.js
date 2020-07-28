@@ -36,7 +36,7 @@ function main(studentDir) {
             }
         };
 
-	var target = "https://istd50044.gitlab.io/labs/";
+	var target = "https://www.sutd.edu.sg/";
         console.log("Loading attacker page. If you get a timeout here you're not redirecting to " + target + ".");
         page.open(answerPath);
         page.onLoadFinished = function(status) {
