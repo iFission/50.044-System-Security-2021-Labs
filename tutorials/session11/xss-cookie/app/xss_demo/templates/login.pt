@@ -1,0 +1,24 @@
+<html metal:use-macro="load: base.pt">
+  <div metal:fill-slot="content">
+    <div class="row">
+      <div class="well">
+          <h4>Login</h4>
+          <p>
+            <span tal:replace="message"></span>
+          </p>
+          <form role="form" action="${request.route_url('login')}" method="POST">
+              <input type="hidden" name="came_from" value="${came_from}">
+              <div class="form-group">
+                  <label for="username">Username</label>
+                  <input type="text" class="form-control" id="username" name="username" value="${username}" />
+              </div>
+              <div class="form-group">
+                  <label for="password">Password</label>
+                  <input type="password" class="form-control" id="password" name="password" />
+              </div>
+              <button type="submit" name="form.submitted" value="Log In" class="btn btn-primary">Submit</button>
+          </form>
+      </div>
+    </div>
+  </div>
+</html>

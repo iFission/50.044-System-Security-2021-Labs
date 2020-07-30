@@ -1,0 +1,19 @@
+<html metal:use-macro="load: base.pt">
+  <div metal:fill-slot="content">
+    <!-- Comments Form -->
+    <div class="well">
+        <h4>New Blog Post</h4>
+        <form role="form" action="${request.route_url('add_post')}" method="POST">
+            <div class="form-group">
+                <label for="post-title">Title</label>
+                <input type="text" class="form-control" id="post-title" placeholder="Title" name="title" />
+            </div>
+            <div class="form-group">
+                <label for="post-content">Content</label>
+                <textarea class="form-control" id="post-content" rows="3" placeholder="Your content" name="content"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+  </div>
+</html>

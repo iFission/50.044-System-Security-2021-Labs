@@ -1,0 +1,126 @@
+<html metal:use-macro="load: base.pt">
+  <div metal:fill-slot="content">
+    <div class="row">
+
+        <!-- Blog Post Content Column -->
+        <div class="col-lg-8">
+
+            <!-- Blog Post -->
+
+            <!-- Title -->
+            <h1 tal:content="post.title">Blog Post Title</h1>
+
+            <!-- Author -->
+            <p class="lead">
+                by <span tal:content="post.author">Max Mustermann</span>
+            </p>
+
+            <hr>
+
+            <!-- Date/Time -->
+            <p><span class="glyphicon glyphicon-time"></span><span tal:replace="post.date.strftime(' Posted on %B %d, %Y at %I:%M %p')">2012-01-01</span></p>
+
+            <hr>
+
+            <!-- Post Content -->
+            <p tal:content="post.content">Lorem ipsum...</p>
+
+            <hr>
+
+            <!-- Blog Comments -->
+
+            <!-- Comments Form -->
+            <div class="well">
+                <h4>Leave a Comment:</h4>
+                <form role="form" action="${request.route_url('add_comment', id=post.id)}" method="POST">
+                    <div class="form-group">
+                        <label for="comment-author">Name</label>
+                        <input type="text" class="form-control" id="comment-author" placeholder="Your name" name="author" />
+                    </div>
+                    <div class="form-group">
+                        <label for="comment-message">Message</label>
+                        <textarea class="form-control" id="comment-message" rows="3" placeholder="Your message" name="message"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+
+            <hr>
+
+            <!-- Posted Comments -->
+
+            <!-- Comment -->
+            <div class="media" tal:repeat="comment comments">
+                <a class="pull-left" href="#">
+                    <img class="media-object" src="http://placehold.it/64x64" alt="">
+                </a>
+                <div class="media-body">
+                    <h4 class="media-heading"><span tal:content="comment.author">Max Mustermann</span>
+                        <small tal:content="post.date.strftime('%B %d, %Y at %I:%M %p')">2012-01-01</small>
+                    </h4>
+                    ${structure: comment.message}
+                </div>
+            </div>
+        </div>
+
+        <!-- Blog Sidebar Widgets Column -->
+        <div class="col-md-4">
+
+            <!-- Blog Search Well -->
+            <div class="well">
+                <h4>Blog Search</h4>
+                <div class="input-group">
+                    <input type="text" class="form-control">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button">
+                            <span class="glyphicon glyphicon-search"></span>
+                    </button>
+                    </span>
+                </div>
+                <!-- /.input-group -->
+            </div>
+
+            <!-- Blog Categories Well -->
+            <div class="well">
+                <h4>Blog Categories</h4>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <ul class="list-unstyled">
+                            <li><a href="#">Category Name</a>
+                            </li>
+                            <li><a href="#">Category Name</a>
+                            </li>
+                            <li><a href="#">Category Name</a>
+                            </li>
+                            <li><a href="#">Category Name</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-6">
+                        <ul class="list-unstyled">
+                            <li><a href="#">Category Name</a>
+                            </li>
+                            <li><a href="#">Category Name</a>
+                            </li>
+                            <li><a href="#">Category Name</a>
+                            </li>
+                            <li><a href="#">Category Name</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- /.row -->
+            </div>
+
+            <!-- Side Widget Well -->
+            <div class="well">
+                <h4>Side Widget Well</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore, perspiciatis adipisci accusamus laudantium odit aliquam repellat tempore quos aspernatur vero.</p>
+            </div>
+
+        </div>
+
+    </div>
+    <!-- /.row -->
+  </div>
+</html>
