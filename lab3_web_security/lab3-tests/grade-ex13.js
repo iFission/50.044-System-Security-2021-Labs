@@ -73,7 +73,7 @@ function main(studentDir) {
         // quickly. They should lose points if they don't register
         // event listeners.
 
-	var target = "https://istd50044.gitlab.io/labs/";
+	var target = "https://www.sutd.edu.sg/";
         console.log("Loading attacker page, logged in. If you get a timeout here, you're not redirecting to " + target + ".");
         page.open(answerPath);
         page.onLoadFinished = function(status) {
