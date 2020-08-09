@@ -18,6 +18,9 @@ Each part has several exercises that help you build up an attack. All attacks wi
 
 #### We strongly recommend that you develop and test your code on Firefox.
 
+There are subtle quirks in the way HTML and JavaScript are handled by different browsers, and some attacks that work or do not work in Internet Explorer or Chrome (for example) may not work in Firefox.
+We will grade your attacks with default settings using the current version of Mozilla Firefox.
+
 :::
 
 ### Network setup
