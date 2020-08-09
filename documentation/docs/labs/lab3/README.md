@@ -14,7 +14,9 @@ This lab will introduce you to browser-based attacks, as well as to how one migh
 Each part has several exercises that help you build up an attack. All attacks will involve exploiting weaknesses in the zoobar site, but these are representative of weaknesses found in real web sites.
 :::tip <p></p>
 
-### We strongly recommend that you develop and test your code on Firefox.
+### Requirement
+
+#### We strongly recommend that you develop and test your code on Firefox.
 
 :::
 
