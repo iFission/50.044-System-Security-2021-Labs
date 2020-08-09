@@ -12,6 +12,11 @@ This lab will introduce you to browser-based attacks, as well as to how one migh
 - Part D: Profile worm
 
 Each part has several exercises that help you build up an attack. All attacks will involve exploiting weaknesses in the zoobar site, but these are representative of weaknesses found in real web sites.
+:::tip <p></p>
+
+### We strongly recommend that you develop and test your code on Firefox.
+
+:::
 
 ### Network setup
 
@@ -252,6 +257,8 @@ Please note that after implementing this exercise, the attacker controller webpa
 ### Exercise 13
 
 ##### Side Channels and Phishing.
+
+Modify answer-12.html so that your JavaScript will steal a victim's zoobars if the user is already logged in (using the attack from Part 2), or otherwise follows exercise 12: ask the victim for their username and password, if they are not logged in, and steal the victim's password. As with the previous exercise, be sure that you do not load the answer-13.html file from http://localhost:8080/.
 
 The grading script will run the code once while logged in to the zoobar site before loading your page. It will then run the code a second time while _not_ logged in to the zoobar site before loading your page. Consequently, when the browser loads your document, your malicious document should sniff out whether the user is logged into the zoobar site. Submit your final HTML document in a file named `answer-13.html`.
 
