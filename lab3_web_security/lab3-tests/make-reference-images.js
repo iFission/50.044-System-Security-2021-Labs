@@ -24,7 +24,7 @@ function make_refimg_ex4(num, prevUser) {
                     // Wait for the zoobar counter to settle
                     setTimeout(function () {
                         grading.derandomize(page);
-                        page.render("lab4-tests/answer-14_" + (num - 1) + ".ref.png");
+                        page.render("lab3-tests/answer-14_" + (num - 1) + ".ref.png");
                         page.close();
 
                         make_refimg_ex4(num + 1, user);
@@ -42,7 +42,7 @@ function main() {
         var page = webpage.create();
         grading.openOrDie(page, grading.zoobarBase + "users", function() {
             grading.derandomize(page);
-            page.render("lab4-tests/answer-5.ref.png");
+            page.render("lab3-tests/answer-5.ref.png");
             page.close();
 
             // answer-3.png, answer-chal.png: view the login page.
@@ -50,12 +50,12 @@ function main() {
             page = webpage.create();
             grading.openOrDie(page, grading.zoobarBase + "login", function() {
                 grading.derandomize(page);
-                page.render("lab4-tests/answer-13.ref.png");
+                page.render("lab3-tests/answer-13.ref.png");
                 page.close();
-                if (fs.exists("lab4-tests/answer-chal.ref.png"))
-                    fs.remove("lab4-tests/answer-chal.ref.png");
-                fs.copy("lab4-tests/answer-13.ref.png",
-                        "lab4-tests/answer-chal.ref.png");
+                if (fs.exists("lab3-tests/answer-chal.ref.png"))
+                    fs.remove("lab3-tests/answer-chal.ref.png");
+                fs.copy("lab3-tests/answer-13.ref.png",
+                        "lab3-tests/answer-chal.ref.png");
 
                 phantom.cookies = auth.attackerCookies;
                 grading.setProfile(ex4msg, function () {
