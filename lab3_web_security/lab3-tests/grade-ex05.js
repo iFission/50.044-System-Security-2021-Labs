@@ -41,7 +41,7 @@ function main(studentDir) {
         return;
     }
     var answerPath = studentDir + "/answer-5.txt";
-    var screenshotPath = studentDir + "/lab4-tests/answer-5.png";
+    var screenshotPath = studentDir + "/lab3-tests/answer-5.png";
     if (!fs.isFile(answerPath)) {
         grading.failed("No answer-5.txt");
         phantom.exit();
