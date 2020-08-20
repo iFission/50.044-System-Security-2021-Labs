@@ -11,7 +11,7 @@ function main(studentDir) {
         return;
     }
     var answerPath = studentDir + "/answer-chal.html";
-    var screenshotPath = studentDir + "/lab4-tests/answer-chal.png";
+    var screenshotPath = studentDir + "/lab3-tests/answer-chal.png";
     if (!fs.isFile(answerPath)) {
         grading.failed("No answer-chal.html");
         phantom.exit();
