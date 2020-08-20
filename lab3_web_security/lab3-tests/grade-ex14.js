@@ -25,7 +25,7 @@ function testProfile(attackerCookies, studentDir, num, prevUser) {
                     // Say cheese! num-1 because we are viewing the
                     // previous profile.
                     grading.derandomize(page);
-                    path = studentDir + "/lab4-tests/answer-14_" + (num - 1) + ".png";
+                    path = studentDir + "/lab3-tests/answer-14_" + (num - 1) + ".png";
                     page.render(path);
                     grading.compare(path, function() {
                         page.close();
