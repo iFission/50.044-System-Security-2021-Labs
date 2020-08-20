@@ -43,7 +43,7 @@ function main(studentDir) {
         return;
     }
     var answerPath = studentDir + "/answer-13.html";
-    var screenshotPath = studentDir + "/lab4-tests/answer-13.png";
+    var screenshotPath = studentDir + "/lab3-tests/answer-13.png";
     if (!fs.isFile(answerPath)) {
         grading.failed("No answer-13.html");
         phantom.exit();
