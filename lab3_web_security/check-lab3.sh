@@ -74,7 +74,7 @@ run_test "Exercise 12" lab3-tests/grade-ex12.js
 run_test "Exercise 13" lab3-tests/grade-ex13.js
 
 ### Challenge ###
-run_test "Challenge" lab3-tests/grade-chal.js
+#run_test "Challenge" lab3-tests/grade-chal.js
 
 ### Part 4 ###
 run_test "Exercise 14" lab3-tests/grade-ex14.js
