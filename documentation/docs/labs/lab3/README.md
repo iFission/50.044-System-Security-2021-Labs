@@ -1,6 +1,6 @@
 # Lab 3 - Web Security
 
-<font size="5"> Due: 23/8/2020, 23:59pm </font>
+<font size="5"> Due: 15/08/2021, 23:59pm </font>
 
 ## Introduction
 
