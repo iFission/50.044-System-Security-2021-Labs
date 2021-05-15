@@ -23,13 +23,19 @@ var DownloadsNav = [
     ]
   },
   {
-    textEN: 'Virtual Machine',
+    textEN: 'Virtual Machines',
     items: [
       {
         text: 'ISTD50044.ova (Debian 9.7)',
         link:
           'https://drive.google.com/open?id=1iKXW7YgwMLvZITnJCX8oYDrKlgtouarQ'
       }
+      {
+        text: 'CTFD-50044.ova (Ubuntu 20.04)',
+        link:
+          'https://drive.google.com/file/d/1MtPJ6hKqAnUnZ8-wZhGRJ-NPZ5N7pgPG/view?usp=sharing'
+      }
+
     ]
   }
 ]

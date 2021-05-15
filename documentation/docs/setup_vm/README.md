@@ -1,4 +1,4 @@
-# Setup VM
+# Setup Project VM
 
 Exploiting buffer overflows requires precise control over the execution environment. A small change in the compiler, environment variables, or the way the program is executed can result in slightly different memory layout and code structure, thus requiring a different exploit. For this reason, this lab uses a [virtual machine](https://en.wikipedia.org/wiki/Virtual_machine) to run the vulnerable web server code.
 
@@ -56,3 +56,19 @@ After the VM is running, you can also access the online VSCode IDE which allows 
 ## Labs
 
 Now that you have your environment ready, follow the link to [Lab 1](/labs/lab1/).
+
+# Setup CTF VM
+
+The practice VM for CTF exercises can be downloaded here:
+[ctfd-50044.ova](https://drive.google.com/file/d/1MtPJ6hKqAnUnZ8-wZhGRJ-NPZ5N7pgPG/view?usp=sharing). The VM
+is roughly 6GB in size, and contains Ubuntu 20.04. It has been tested with VirtualBox 6.1.
+
+Once started, you can SSH to it via port 22222 at 127.0.0.1. Specifically,
+
+
+`ssh -p 22222 ctf@127.0.0.1`
+
+where the password for ctf is `qwertyu`
+
+:::
+

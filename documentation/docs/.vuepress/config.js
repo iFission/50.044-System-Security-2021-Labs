@@ -6,7 +6,7 @@ var { genNav, getComponentSidebar, deepClone } = utils
 
 module.exports = {
   dest: '../public',
-  title: '50.044 System Security',
+  title: '50.044 Systems Security',
   description: 'LABS',
   base: '/labs/',
   head: [
@@ -60,7 +60,7 @@ module.exports = {
 
           '/setup_vm/': [
             {
-              title: 'VM Setup Guide',
+              title: 'VMs Setup Guide',
               collapsable: false,
               children: ['/setup_vm/']
             }
@@ -72,7 +72,7 @@ module.exports = {
   locales: {
     '/': {
       lang: 'en-US',
-      description: 'A practical introduction to system security'
+      description: 'A practical introduction to systems security'
     }
   },
   configureWebpack: {

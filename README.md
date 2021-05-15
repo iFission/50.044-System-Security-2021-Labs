@@ -1,6 +1,6 @@
-# 50.044 System Security
+# 50.044 Systems Security
 
-###### A practical introduction to system security
+###### A practical introduction to systems security
 
 Check the course labs online documentation on https://istd50044.gitlab.io/labs/ to get started.
 
