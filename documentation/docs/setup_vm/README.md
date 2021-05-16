@@ -1,18 +1,18 @@
-# Setup Project VM
+## Setup Project VM
 
 Exploiting buffer overflows requires precise control over the execution environment. A small change in the compiler, environment variables, or the way the program is executed can result in slightly different memory layout and code structure, thus requiring a different exploit. For this reason, this lab uses a [virtual machine](https://en.wikipedia.org/wiki/Virtual_machine) to run the vulnerable web server code.
 
 ![home](/labs/setup_vm/home.png)
 
-## 1) Download VM software
+### 1) Download VM software
 
 To start working on this lab assignment, you'll need software that lets you run a virtual machine. On Windows, Mac or Linux, use [Oracle VM Virtual Box 6.1.6](https://www.virtualbox.org/wiki/Downloads) available on the `Downloads tab`.
 
-## 2) Download VM Image
+### 2) Download VM Image
 
 Once you have virtual machine software installed on your machine, you should download the [ISTD50044.ova](https://drive.google.com/file/d/1iKXW7YgwMLvZITnJCX8oYDrKlgtouarQ/view?usp=sharing) (available on `Downloads tab`) to your computer. This virtual machine image contains an installation of Debian 9.7 Linux.
 
-## 3) Import & Configure VM Image
+### 3) Import & Configure VM Image
 
 To import the course VM, open Oracle VM Virtual Box and import `ISTD50044.ova`. Go to `File > Import Appliance`, select the file `ISTD50044.ova` and proceed the import process with the default settings. After some minutes the import process should finish and Oracle VM Virtual Box should will list the VM.
 
@@ -20,7 +20,7 @@ By default the VM image is imported with the correct NAT network settings, howev
 
 ![nat_settings](/labs/setup_vm/nat_settings.png)
 
-## 4) Start VM
+### 4) Start VM
 
 To start the VM, simply select the **ISTD50044** entry and click on the Start button (Green right arrow on toolbar). If you get a firewall prompt, you can accept to allow the VM to open **ports 22000, 8080 and 3000** so you can connect and browse the labs apps.
 
@@ -39,7 +39,7 @@ You'll use two accounts on the VM, the user account (**httpd**) and root. By def
 
 :::
 
-## 5) Connect to the VM
+### 5) Connect to the VM
 
 #### SSH Client
 
@@ -53,12 +53,12 @@ After the VM is running, you can also access the online VSCode IDE which allows 
 
 ![vscode](/labs/setup_vm/vscode.png)
 
-## Labs
+#### Labs
 
 Now that you have your environment ready, follow the link to [Lab 1](/labs/lab1/).
 
 
-# Setup CTF VM
+## Setup CTF VM
 
 The practice VM image for CTF exercises can be downloaded here
 [ctfd-50044.ova](https://drive.google.com/file/d/1MtPJ6hKqAnUnZ8-wZhGRJ-NPZ5N7pgPG/view?usp=sharing) or
