@@ -57,10 +57,12 @@ After the VM is running, you can also access the online VSCode IDE which allows 
 
 Now that you have your environment ready, follow the link to [Lab 1](/labs/lab1/).
 
+
 # Setup CTF VM
 
-The practice VM for CTF exercises can be downloaded here:
-[ctfd-50044.ova](https://drive.google.com/file/d/1MtPJ6hKqAnUnZ8-wZhGRJ-NPZ5N7pgPG/view?usp=sharing). The VM
+The practice VM image for CTF exercises can be downloaded here
+[ctfd-50044.ova](https://drive.google.com/file/d/1MtPJ6hKqAnUnZ8-wZhGRJ-NPZ5N7pgPG/view?usp=sharing) or
+directly from the `Download tab`. The VM
 is roughly 6GB in size, and contains Ubuntu 20.04. It has been tested with VirtualBox 6.1.
 
 Once started, you can SSH to it via port 22222 at 127.0.0.1. Specifically,
@@ -68,7 +70,5 @@ Once started, you can SSH to it via port 22222 at 127.0.0.1. Specifically,
 
 `ssh -p 22222 ctf@127.0.0.1`
 
-where the password for ctf is `qwertyu`
-
-:::
+where the password for ctf is `qwertyu`.
 

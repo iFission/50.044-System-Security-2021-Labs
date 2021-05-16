@@ -33,7 +33,7 @@ module.exports = {
         editLinkText: 'Edit this page on GitHub',
         nav: [
           {
-            text: 'Setup VM',
+            text: 'Setup VMs',
             link: '/setup_vm/'
           },
           {
