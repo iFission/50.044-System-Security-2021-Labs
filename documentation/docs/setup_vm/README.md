@@ -1,3 +1,7 @@
+# Course VMs
+There are 2 VMs you will need for this course: one is for your group project, the other is for  
+practicing CTF challenges. 
+
 ## Setup Project VM
 
 Exploiting buffer overflows requires precise control over the execution environment. A small change in the compiler, environment variables, or the way the program is executed can result in slightly different memory layout and code structure, thus requiring a different exploit. For this reason, this lab uses a [virtual machine](https://en.wikipedia.org/wiki/Virtual_machine) to run the vulnerable web server code.
@@ -62,7 +66,7 @@ Now that you have your environment ready, follow the link to [Lab 1](/labs/lab1/
 
 The practice VM image for CTF exercises can be downloaded here
 [ctfd-50044.ova](https://drive.google.com/file/d/1MtPJ6hKqAnUnZ8-wZhGRJ-NPZ5N7pgPG/view?usp=sharing) or
-directly from the `Download tab`. The VM
+directly from the `Download tab`. The VM is loaded with all challenges and necessary libaries. It is 
 is roughly 6GB in size, and contains Ubuntu 20.04. It has been tested with VirtualBox 6.1.
 
 Once started, you can SSH to it via port 22222 at 127.0.0.1. Specifically,
