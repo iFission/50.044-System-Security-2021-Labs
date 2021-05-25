@@ -304,7 +304,7 @@ You should also make sure your code still passes all tests using **make check**,
 ## Submission
 
 Your submission include the codes (if any) to the exercise, and *one* short report explaining all of your
-solutions. The report is in PDF format, named `answers.pdf`. Zip all files and upload to eDimension. 
+solutions. The report is in PDF format, named `answers.pdf` and will be given a maximum of three points. Zip all files and upload to eDimension. 
 
 Use the following commands to generate the codes for submission. Keep in mind that those commands only compress the files of your lab folder. Make sure that your changes are included in the compressed files according to their respective exercises.
 
