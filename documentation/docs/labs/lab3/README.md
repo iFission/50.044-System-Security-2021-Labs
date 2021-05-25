@@ -317,7 +317,7 @@ This completes all parts of this lab. Submit your answers to the first part of t
 ## Homework Submission
 
 Your submission include the codes (if any) to the exercise, and _one_ short report explaining all of your
-solutions. The report is in PDF format, named `answers.pdf`. Zip all files and upload to eDimension.
+solutions. The report is in PDF format, named `answers.pdf` and will be given a maximum of three points . Zip all files and upload to eDimension.
 
 Use the following commands to generate the codes for submission. Keep in mind that those commands only compress the files of your lab folder. Make sure that your changes are included in the compressed files according to their respective exercises.
 
