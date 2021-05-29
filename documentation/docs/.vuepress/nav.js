@@ -31,9 +31,9 @@ var DownloadsNav = [
           'https://drive.google.com/open?id=1iKXW7YgwMLvZITnJCX8oYDrKlgtouarQ'
       },
       {
-        text: 'CTFD-50044.ova (Ubuntu 20.04)',
+        text: 'CTFD-VM.ova (Ubuntu 20.04)',
         link:
-          'https://drive.google.com/file/d/1MtPJ6hKqAnUnZ8-wZhGRJ-NPZ5N7pgPG/view?usp=sharing'
+          'https://drive.google.com/file/d/1SB2R-YDrRpRO-a3jNgEi-D1ztYi8C7TK/view?usp=sharing'
       }
 
     ]

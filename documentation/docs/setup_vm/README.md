@@ -65,7 +65,7 @@ Now that you have your environment ready, follow the link to [Lab 1](/labs/lab1/
 ## Setup CTF VM
 
 The practice VM image for CTF exercises can be downloaded here
-[ctfd-50044.ova](https://drive.google.com/file/d/1MtPJ6hKqAnUnZ8-wZhGRJ-NPZ5N7pgPG/view?usp=sharing) or
+[ctfd-vm.ova](https://drive.google.com/file/d/1SB2R-YDrRpRO-a3jNgEi-D1ztYi8C7TK/view?usp=sharing) or
 directly from the `Download tab`. The VM is loaded with all challenges and necessary libaries. It is 
 is roughly 6GB in size, and contains Ubuntu 20.04. It has been tested with VirtualBox 6.1.
 
