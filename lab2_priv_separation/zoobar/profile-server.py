@@ -7,8 +7,10 @@ import sandboxlib
 import urllib
 import hashlib
 import socket
-import bank_client
+import bank
 import zoodb
+import uuid
+import stat
 
 from debug import *
 
@@ -29,7 +31,7 @@ class ProfileAPIServer(rpclib.RpcServer):
 
     def rpc_get_xfers(self, username):
         xfers = []
-        for xfer in bank_client.get_log(username):
+        for xfer in bank.get_log(username):
             xfers.append({ 'sender': xfer.sender,
                            'recipient': xfer.recipient,
                            'amount': xfer.amount,
@@ -44,11 +46,11 @@ class ProfileAPIServer(rpclib.RpcServer):
             return None
         return { 'username': p.username,
                  'profile': p.profile,
-                 'zoobars': bank_client.balance(username),
+                 'zoobars': bank.balance(username),
                }
 
     def rpc_xfer(self, target, zoobars):
-        bank_client.transfer(self.user, target, zoobars, self.user.token)
+        bank.transfer(self.user, target, zoobars)
 
 def run_profile(pcode, profile_api_client):
     globals = {'api': profile_api_client}
@@ -56,9 +58,14 @@ def run_profile(pcode, profile_api_client):
 
 class ProfileServer(rpclib.RpcServer):
     def rpc_run(self, pcode, user, visitor):
-        uid = 0
+        uid = 61006
 
         userdir = '/tmp'
+        user_uuid = uuid.uuid3(uuid.NAMESPACE_OID, user.__str__()).__str__()
+        user_path = os.path.join(userdir, user_uuid)
+        if not os.path.exists(user_path):
+            os.mkdir(user_path)
+            os.chmod(user_path, stat.S_IRWXU ^ stat.S_IRWXG)
 
         (sa, sb) = socket.socketpair(socket.AF_UNIX, socket.SOCK_STREAM, 0)
         pid = os.fork()
@@ -72,7 +79,7 @@ class ProfileServer(rpclib.RpcServer):
         sb.close()
         os.waitpid(pid, 0)
 
-        sandbox = sandboxlib.Sandbox(userdir, uid, '/profilesvc/lockfile')
+        sandbox = sandboxlib.Sandbox(user_path, uid, '/profilesvc/lockfile')
         with rpclib.RpcClient(sa) as profile_api_client:
             return sandbox.run(lambda: run_profile(pcode, profile_api_client))
 

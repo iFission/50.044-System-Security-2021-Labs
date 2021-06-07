@@ -94,7 +94,11 @@ set_perms 61010:61010 755 /jail/zoobar/echo-server.py
 set_perms 61013:61013 755 /jail/zoobar/auth-server.py
 
 # For part 7 -- Bank service
-set_perms 61014:61014 755 /jail/zoobar/bank-server.py
+set_perms 61014:61014 775 /jail/zoobar/bank-server.py
 
 # ex4
 set_perms 61007:61007 755 /jail/zoobar/index.cgi
+
+# ex9
+create_socket_dir /jail/profilesvc 61006:61006 755
+set_perms 61006:61006 755 /jail/zoobar/profile-server.py
