@@ -440,7 +440,7 @@ void http_serve_executable(int fd, const char *pn)
 
 void url_decode(char *dst, const char *src)
 {
-    for (;;)
+    for (int i = 0; i < 4096; i++)
     {
         if (src[0] == '%' && src[1] && src[2])
         {
