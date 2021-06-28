@@ -168,6 +168,13 @@ pid_t launch_svc(CONF *conf, const char *name)
     if ((dir = NCONF_get_string(conf, name, "dir")))
     {
         /* chroot into dir */
+
+        warnx("path  %s", argv[0]);
+        warnx("dir  %s", dir);
+        int result = chroot(dir);
+        if (result != 0)
+            warnx("Failed to chroot to jail");
+        chdir("/");
     }
 
     signal(SIGCHLD, SIG_DFL);
