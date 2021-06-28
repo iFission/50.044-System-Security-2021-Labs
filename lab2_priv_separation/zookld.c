@@ -14,9 +14,9 @@
 #include <string.h>
 #include "http.h"
 
-#define ZOOK_CONF    "zook.conf"
+#define ZOOK_CONF "zook.conf"
 #define MAX_SERVICES 256
-#define MAX_GIDS     256
+#define MAX_GIDS 256
 
 static int svcfds[MAX_SERVICES];
 static char svcnames[MAX_SERVICES][256];
@@ -119,7 +119,7 @@ pid_t launch_svc(CONF *conf, const char *name)
     {
     case -1: /* error */
         err(1, "fork");
-    case 0:  /* child */
+    case 0: /* child */
         close(fds[0]);
         break;
     default: /* parent */
@@ -138,31 +138,10 @@ pid_t launch_svc(CONF *conf, const char *name)
     /* split extra arguments */
     if ((args = NCONF_get_string(conf, name, "args")))
     {
-        for (ap = &argv[2]; (*ap = strsep(&args, " \t")) != NULL; )
+        for (ap = &argv[2]; (*ap = strsep(&args, " \t")) != NULL;)
             if (**ap != '\0')
                 if (++ap >= &argv[31])
                     break;
-    }
-
-    if (NCONF_get_number_e(conf, name, "uid", &uid))
-    {
-        /* change real, effective, and saved uid to uid */
-        warnx("setuid %ld", uid);
-    }
-
-    if (NCONF_get_number_e(conf, name, "gid", &gid))
-    {
-        /* change real, effective, and saved gid to gid */
-        warnx("setgid %ld", gid);
-    }
-
-    if ((groups = NCONF_get_string(conf, name, "extra_gids")))
-    {
-        ngids = 0;
-        CONF_parse_list(groups, ',', 1, &group_parse_cb, NULL);
-        /* set the grouplist to gids */
-        for (i = 0; i < ngids; i++)
-            warnx("extra gid %d", gids[i]);
     }
 
     if ((dir = NCONF_get_string(conf, name, "dir")))
@@ -175,6 +154,32 @@ pid_t launch_svc(CONF *conf, const char *name)
         if (result != 0)
             warnx("Failed to chroot to jail");
         chdir("/");
+    }
+
+    if (NCONF_get_number_e(conf, name, "uid", &uid))
+    {
+        /* change real, effective, and saved uid to uid */
+        warnx("setuid %ld", uid);
+        setresuid(uid, uid, uid);
+    }
+
+    if (NCONF_get_number_e(conf, name, "gid", &gid))
+    {
+        /* change real, effective, and saved gid to gid */
+        warnx("setgid %ld", gid);
+        setresgid(gid, gid, gid);
+    }
+
+    if ((groups = NCONF_get_string(conf, name, "extra_gids")))
+    {
+        ngids = 0;
+        CONF_parse_list(groups, ',', 1, &group_parse_cb, NULL);
+        /* set the grouplist to gids */
+        for (i = 0; i < ngids; i++)
+        {
+            warnx("extra gid %d", gids[i]);
+        }
+        setgroups(ngids, gids);
     }
 
     signal(SIGCHLD, SIG_DFL);
