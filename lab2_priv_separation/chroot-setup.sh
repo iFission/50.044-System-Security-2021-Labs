@@ -75,3 +75,8 @@ set_perms 61012:61012 755 /jail/zoobar/db/person/person.db
 
 set_perms 61012:61012 755 /jail/zoobar/db/transfer
 set_perms 61012:61012 755 /jail/zoobar/db/transfer/transfer.db
+
+
+# Hotfix to make echo server work now
+set_perms 61010:61010 755 /jail/zoobar/echo-server.py
+
