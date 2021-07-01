@@ -5,6 +5,7 @@ import sys
 from debug import *
 
 class EchoRpcServer(rpclib.RpcServer):
+    print("Test function call")
     def rpc_echo(self, s):
         return 'You said: %s' % s
 
