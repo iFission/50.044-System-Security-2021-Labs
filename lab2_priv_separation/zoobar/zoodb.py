@@ -14,12 +14,13 @@ class Person(PersonBase):
     zoobars = Column(Integer, nullable=False, default=10)
     profile = Column(String(5000), nullable=False, default="")
 
-
+# Created in Exercise 5
 class Cred(CredBase):
     __tablename__ = "cred"
     username = Column(String(128), primary_key=True)
-    password = Column(String(128))
+    password = Column(String(128)) # EX6: Swapped to hold hash, under same key
     token = Column(String(128))
+    salt = Column(String(128)) # EX6
 
 class Transfer(TransferBase):
     __tablename__ = "transfer"

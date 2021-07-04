@@ -3,6 +3,8 @@ from debug import *
 
 import hashlib
 import random
+import pbkdf2
+import os
 
 # -- Move to auth service -- apparently no need and idk why lol
 def newtoken(db, cred):
@@ -15,9 +17,11 @@ def newtoken(db, cred):
 def login(username, password):
     db = cred_setup()
     cred = db.query(Cred).get(username)
+   
     if not cred:
         return None
-    if cred.password == password:
+    # Modified for Task 6
+    if cred.password == pbkdf2.PBKDF2(password, cred.salt).hexread(32):
         return newtoken(db, cred)
     else:
         return None
@@ -33,10 +37,13 @@ def register(username, password):
     # Create Person
     newperson = Person()
     newperson.username = username
-    # Create the cred
+    # Create the cred - Modified for Task 6
+    salt = os.urandom(8).encode('base-64') # 64 bit salt, not a unicode string - so encode as b64
+    password_hash = pbkdf2.PBKDF2(password, salt).hexread(32)
     newcred = Cred()
-    newcred.password = password
+    newcred.password = password_hash
     newcred.username = username
+    newcred.salt = salt
     # Commit changes
     db_person.add(newperson)
     db_cred.add(newcred)
