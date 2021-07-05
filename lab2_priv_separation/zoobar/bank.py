@@ -4,9 +4,10 @@ from debug import *
 import time
 
 def transfer(sender, recipient, zoobars):
-    persondb = person_setup()
-    senderp = persondb.query(Person).get(sender)
-    recipientp = persondb.query(Person).get(recipient)
+    # Exercise 7 - Swapped to bankDB
+    bankdb = bank_setup()
+    senderp = bankdb.query(Bank).get(sender)
+    recipientp = bankdb.query(Bank).get(recipient)
 
     sender_balance = senderp.zoobars - zoobars
     recipient_balance = recipientp.zoobars + zoobars
@@ -16,7 +17,7 @@ def transfer(sender, recipient, zoobars):
 
     senderp.zoobars = sender_balance
     recipientp.zoobars = recipient_balance
-    persondb.commit()
+    bankdb.commit()
 
     transfer = Transfer()
     transfer.sender = sender
@@ -29,12 +30,27 @@ def transfer(sender, recipient, zoobars):
     transferdb.commit()
 
 def balance(username):
-    db = person_setup()
-    person = db.query(Person).get(username)
+    db = bank_setup()
+    person = db.query(Bank).get(username)
     return person.zoobars
 
 def get_log(username):
     db = transfer_setup()
     return db.query(Transfer).filter(or_(Transfer.sender==username,
                                          Transfer.recipient==username))
+
+
+# Exercise 7 - Added interface for initialisation of zoobars
+
+def initalise_zoobars(username):
+    db = bank_setup()
+    person = db.query(Bank).get(username)
+    # If somehow a profile doesnt exist but a bank entry exist, somehting is seriously wrong
+    if person:
+        return None
+    newbankentry = Bank()
+    newbankentry.username = username
+    # no need to initialise zoobars, SQL handle by default
+    db.add(newbankentry)
+    db.commit()
 

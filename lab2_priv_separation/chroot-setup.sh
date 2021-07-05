@@ -58,6 +58,7 @@ cp -r /usr/share/zoneinfo/America /jail/usr/share/zoneinfo/
 
 create_socket_dir /jail/echosvc 61010:61010 755
 create_socket_dir /jail/authsvc 61013:61013 755
+create_socket_dir /jail/banksvc 61014:61014 755
 
 
 mkdir -p /jail/tmp
@@ -72,21 +73,28 @@ rm -rf /jail/zoobar/db
 python /jail/zoobar/zoodb.py init-person
 python /jail/zoobar/zoodb.py init-transfer
 python /jail/zoobar/zoodb.py init-cred
+python /jail/zoobar/zoodb.py init-bank
 
-# HOTFIX, to make it writeable by the 
+# HOTFIX, to make it writeable by the . Person used by Cred, Transfer used by Bank
 set_perms 61012:61012 777 /jail/zoobar/db/person
 set_perms 61012:61012 777 /jail/zoobar/db/person/person.db
+set_perms 61012:61012 777 /jail/zoobar/db/transfer
+set_perms 61012:61012 777 /jail/zoobar/db/transfer/transfer.db
 
-set_perms 61012:61012 755 /jail/zoobar/db/transfer
-set_perms 61012:61012 755 /jail/zoobar/db/transfer/transfer.db
+
 set_perms 61013:61013 700 /jail/zoobar/db/cred
 set_perms 61013:61013 700 /jail/zoobar/db/cred/cred.db
+set_perms 61014:61014 700 /jail/zoobar/db/bank
+set_perms 61014:61014 700 /jail/zoobar/db/bank/bank.db
 
 # Hotfix to make echo server work now
 set_perms 61010:61010 755 /jail/zoobar/echo-server.py
 
 # For part 5 -- Auth service
 set_perms 61013:61013 755 /jail/zoobar/auth-server.py
+
+# For part 7 -- Bank service
+set_perms 61014:61014 755 /jail/zoobar/bank-server.py
 
 
 
