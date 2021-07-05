@@ -9,7 +9,8 @@ from debug import *
 import auth_client
 
 
-def serialise(sql_obj):
+
+def serialise_msg(sql_obj):
     return {c.name: getattr(sql_obj, c.name) for c in sql_obj.__mapper__.columns}
 
 class BankRpcServer(rpclib.RpcServer):
@@ -27,9 +28,8 @@ class BankRpcServer(rpclib.RpcServer):
         return bank.balance(username)
 
     def rpc_get_log(self, username):
-        
-        res  = bank.get_log(username) # this function is crashing, with error that data is not a JSON - suspect is rpc issue
-        return res
+        res =  bank.get_log(username) # this function is crashing, with error that data is not a JSON - suspect is rpc issue
+        return [serialise_msg(x) for x in res]
 
     def rpc_initalise_zoobars(self, username):
         return bank.initalise_zoobars(username)
