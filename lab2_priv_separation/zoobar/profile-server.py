@@ -22,6 +22,7 @@ class ProfileAPIServer(rpclib.RpcServer):
     def __init__(self, user, visitor):
         self.user = user
         self.visitor = visitor
+        os.setuid(61014)
 
     def rpc_get_self(self):
         return self.user
