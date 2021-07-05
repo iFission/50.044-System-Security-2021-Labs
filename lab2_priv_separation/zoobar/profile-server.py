@@ -48,7 +48,7 @@ class ProfileAPIServer(rpclib.RpcServer):
                }
 
     def rpc_xfer(self, target, zoobars):
-        bank_client.transfer(self.user, target, zoobars)
+        bank_client.transfer(self.user, target, zoobars, self.user.token)
 
 def run_profile(pcode, profile_api_client):
     globals = {'api': profile_api_client}

@@ -53,4 +53,3 @@ def initalise_zoobars(username):
     # no need to initialise zoobars, SQL handle by default
     db.add(newbankentry)
     db.commit()
-
