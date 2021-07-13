@@ -76,8 +76,8 @@ python /jail/zoobar/zoodb.py init-cred
 python /jail/zoobar/zoodb.py init-bank
 
 # HOTFIX, to make it writeable by the . Person used by Cred, Transfer used by Bank
-set_perms 61012:61012 705 /jail/zoobar/db/person
-set_perms 61012:61012 705 /jail/zoobar/db/person/person.db
+set_perms 61012:61012 770 /jail/zoobar/db/person
+set_perms 61012:61012 660 /jail/zoobar/db/person/person.db
 set_perms 61012:61012 777 /jail/zoobar/db/transfer
 set_perms 61012:61012 777 /jail/zoobar/db/transfer/transfer.db
 

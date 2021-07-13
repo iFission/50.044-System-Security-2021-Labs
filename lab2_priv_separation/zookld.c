@@ -156,12 +156,7 @@ pid_t launch_svc(CONF *conf, const char *name)
         chdir("/");
     }
 
-    if (NCONF_get_number_e(conf, name, "uid", &uid))
-    {
-        /* change real, effective, and saved uid to uid */
-        warnx("setuid %ld", uid);
-        setresuid(uid, uid, uid);
-    }
+    
 
     if (NCONF_get_number_e(conf, name, "gid", &gid))
     {
@@ -180,6 +175,14 @@ pid_t launch_svc(CONF *conf, const char *name)
             warnx("extra gid %d", gids[i]);
         }
         setgroups(ngids, gids);
+    }
+
+    // Change the UID last to allow root privileges for previous part
+    if (NCONF_get_number_e(conf, name, "uid", &uid))
+    {
+        /* change real, effective, and saved uid to uid */
+        warnx("setuid %ld", uid);
+        setresuid(uid, uid, uid);
     }
 
     signal(SIGCHLD, SIG_DFL);

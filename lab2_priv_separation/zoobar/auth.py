@@ -28,6 +28,7 @@ def login(username, password):
 
 # -- Move to auth service
 def register(username, password):
+    
     db_person = person_setup()
     db_cred = cred_setup()
     
@@ -46,8 +47,9 @@ def register(username, password):
     newcred.salt = salt
     # Commit changes
     db_person.add(newperson)
-    db_cred.add(newcred)
     db_person.commit()
+
+    db_cred.add(newcred)
     db_cred.commit()
 
   

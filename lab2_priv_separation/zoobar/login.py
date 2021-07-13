@@ -26,6 +26,7 @@ class User(object):
         self.person = None
 
     def addRegistration(self, username, password):
+
         token = auth_client.register(username, password)
         if token is not None:
               #Exercise 7 -  Lastly proceed to make a call to initialise zoobars
