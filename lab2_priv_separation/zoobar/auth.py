@@ -5,7 +5,6 @@ import hashlib
 import random
 import pbkdf2
 import os
-import bank_client
 
 # -- Move to auth service -- apparently no need and idk why lol
 def newtoken(db, cred):
@@ -51,8 +50,7 @@ def register(username, password):
     db_person.commit()
     db_cred.commit()
 
-    #Exercise 7 -  Lastly proceed to make a call to initialise zoobars
-    bank_client.initalise_zoobars(username)
+  
     
     return newtoken(db_cred, newcred)
 

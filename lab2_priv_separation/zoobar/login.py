@@ -28,6 +28,8 @@ class User(object):
     def addRegistration(self, username, password):
         token = auth_client.register(username, password)
         if token is not None:
+              #Exercise 7 -  Lastly proceed to make a call to initialise zoobars
+            bank_client.initalise_zoobars(username)
             return self.loginCookie(username, token)
         else:
             return None
