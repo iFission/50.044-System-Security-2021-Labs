@@ -79,13 +79,13 @@ python /jail/zoobar/zoodb.py init-bank
 set_perms 61012:61012 770 /jail/zoobar/db/person
 set_perms 61012:61012 660 /jail/zoobar/db/person/person.db
 set_perms 61012:61012 770 /jail/zoobar/db/transfer
-set_perms 61012:61012 770 /jail/zoobar/db/transfer/transfer.db
+set_perms 61012:61012 660 /jail/zoobar/db/transfer/transfer.db
 
 
 set_perms 61013:61012 700 /jail/zoobar/db/cred
-set_perms 61013:61012 700 /jail/zoobar/db/cred/cred.db
+set_perms 61013:61012 600 /jail/zoobar/db/cred/cred.db
 set_perms 61014:61014 700 /jail/zoobar/db/bank
-set_perms 61014:61014 700 /jail/zoobar/db/bank/bank.db
+set_perms 61014:61014 600 /jail/zoobar/db/bank/bank.db
 
 # Hotfix to make echo server work now
 set_perms 61010:61010 755 /jail/zoobar/echo-server.py
