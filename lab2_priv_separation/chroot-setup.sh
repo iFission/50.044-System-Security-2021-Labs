@@ -101,4 +101,4 @@ set_perms 61007:61007 755 /jail/zoobar/index.cgi
 
 # ex9
 create_socket_dir /jail/profilesvc 61006:61006 755
-set_perms 61006:61006 755 /jail/zoobar/profile-server.py
+set_perms 61006:61006 700 /jail/zoobar/profile-server.py
