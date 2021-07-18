@@ -366,10 +366,10 @@ def transfer(sender, recipient, zoobars):
     # Exercise 7 - Swapped to bankDB
     bankdb = bank_setup()
     senderp = bankdb.query(Bank).get(sender)
-    recipient = bankdb.query(Bank).get(recipient)
+    recipientp = bankdb.query(Bank).get(recipient)
 
     sender_balance = senderp.zoobars - zoobars
-    recipient_balance = recipient.zoobars + zoobars
+    recipient_balance = recipientp.zoobars + zoobars
 
     if sender_balance < 0 or recipient_balance < 0:
         raise ValueError()
